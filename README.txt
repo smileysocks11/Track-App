@@ -31,7 +31,7 @@ Once the user selects to throw, take inputs for their throw in feet, inches, and
 Select the first available thrower, repeat the above process.
 
 
-Once all throwers have made all 3 throws, sort the throwers by furthest distance thrown and output to the screen and to a file.
+Once all throwers have made all 3 throws sort the throwers, decending, by distance thrown and output to the screen and to a file.
 
 
 Drive the program with text menus: (Example ideas)
