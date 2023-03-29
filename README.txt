@@ -37,7 +37,7 @@ Once all throwers have made all 3 throws, sort the throwers descending by distan
 Drive the program with text menus: (Example ideas)
 
 
-1. Enter athletes
+1. Enter additional athletes
 2. View all athletes
 3. View current throw status
 4. View current leaderboard
