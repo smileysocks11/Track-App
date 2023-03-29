@@ -34,7 +34,7 @@ Select the first available thrower, repeat the above process.
 Once all throwers have made all 3 throws, sort the throwers by furthest distance thrown and output to the screen and to a file.
 
 
-Drive the program with text menus: (Ideas)
+Drive the program with text menus: (Example ideas)
 
 
 1. Enter athletes
