@@ -13,6 +13,7 @@ int main()
 	// declares variables
 	vector<string> lines;
 	string line;
+	int num_athletes;
 
 	// opens the file
 	ifstream in_file("C:\\Users\\SSC00042\\Desktop\\data_files\\athlete-database.txt");
@@ -26,14 +27,16 @@ int main()
 		index++;
 	}
 	
+	num_athletes = lines.size();
+	
 	// creates three pointer arrays for name, school, and max
 	// based on the size of the student vector
 	string* name = nullptr;
-	name = new string[lines.size()];
+	name = new string[num_athletes];
 	string* school = nullptr;
-	school = new string[lines.size()];
+	school = new string[num_athletes];
 	double* max = nullptr;
-	max = new double[lines.size()];
+	max = new double[num_athletes)];
 
 	// calls getAthletes to input all of the athletes
 	// into a tri-parallel array
