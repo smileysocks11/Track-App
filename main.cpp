@@ -6,6 +6,7 @@ using namespace std;
 
 // function prototypes
 void getAthletes(vector<string>, string*, string*, double*);
+int displayMenu(int choice);
 
 int main()
 {
@@ -38,7 +39,22 @@ int main()
 	// into a tri-parallel array
 	getAthletes(lines, name, school, max);
 
+	/* 
+	// menu stuff
+	int choice = 0;
 
+	do
+	{
+		int choice = displayMenu();
+		cout << endl << endl;
+
+		if (choice == 1)
+			
+
+
+	} while (choice != 6);
+
+	*/
 	// deletes the pointer arrays
 	delete[] name;
 	name = nullptr;
