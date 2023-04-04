@@ -7,7 +7,7 @@ using namespace std;
 
 /*
 -------------------------------
-- getAthletes accepts no arguments
+- getAthletes accepts arguments for a vector containing lines from a file and three arrays
 - retrieves the athletes from a file
 - inserts them in a tri-parallel array
 - returns the tri-parallel array
