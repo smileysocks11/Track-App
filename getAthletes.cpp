@@ -7,7 +7,7 @@ using namespace std;
 
 /*
 -------------------------------
-- getAthletes accepts arguments for a vector containing lines from a file and three arrays
+- getAthletes accepts no arguments
 - retrieves the athletes from a file
 - inserts them in a tri-parallel array
 - returns the tri-parallel array
@@ -44,10 +44,10 @@ void getAthletes(vector<string> lines, string* name, string* school, double* max
 	{
 		name[index] = sep[sep_count];
 		sep_count++;
-		school[index] = sep[sep_count];
-		sep_count++;
 		double temp_max = stod(sep[sep_count]);
 		max[index] = temp_max;
+		sep_count++;
+		school[index] = sep[sep_count];
 		sep_count++;
 	}
 
