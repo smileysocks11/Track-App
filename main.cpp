@@ -5,8 +5,10 @@
 using namespace std;
 
 // function prototypes
+void viewAthletes(string(*athletes)[3][3], int);
 void getAthletes(vector<string>, string*, string*, double*);
 int displayMenu(int choice);
+
 
 int main()
 {
@@ -36,7 +38,7 @@ int main()
 	string* school = nullptr;
 	school = new string[num_athletes];
 	double* max = nullptr;
-	max = new double[num_athletes)];
+	max = new double[num_athletes];
 
 	// calls getAthletes to input all of the athletes
 	// into a tri-parallel array
