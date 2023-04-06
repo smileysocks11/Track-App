@@ -1,0 +1,10 @@
+
+*.sln
+*.vsidx
+*.lock
+addAthlete/.vs/addAthlete/v17/.suo
+*.db
+*.ipch
+*.vcxproj
+*.filters
+*.user
