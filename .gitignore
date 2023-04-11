@@ -10,3 +10,12 @@
 *.opendb
 *.ipch
 *.sln
+throw/.vs/throw/v17/.suo
+*.recipe
+*.ilk
+*.log
+*.obj
+*.tlog
+*.idb
+*.pdb
+*.exe
