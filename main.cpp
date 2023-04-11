@@ -2,23 +2,36 @@
 #include <vector>
 #include <string>
 #include <fstream>
+#include <python.h>
 using namespace std;
 
 // function prototypes
-void viewAthletes(string(*athletes)[3][3], int);
 void getAthletes(vector<string>, string*, string*, double*);
 int displayMenu(int choice);
 
-
 int main()
 {
+
+	// python
+	const char* argv[2];
+	argv[0] = "C:\\Users\\SSC00042\\Desktop\\webscrape.py";
+
+	Py_Initialize();
+	PyObject* obj = Py_BuildValue("s", argv[0]);
+	FILE* file = _Py_fopen_obj(obj, "r");
+	if (file) {
+		PyRun_SimpleFile(file, argv[0]);
+		cout << "yes";
+	}
+	Py_Finalize();
+
+
 	// declares variables
 	vector<string> lines;
 	string line;
-	int num_athletes;
 
 	// opens the file
-	ifstream in_file("C:\\Users\\SSC00042\\Desktop\\data_files\\athlete-database.txt");
+	ifstream in_file("C:\\Users\\SSC00042\\Desktop\\database-test.txt");
 
 	// loops to read through each line in the file
 	// adds each line to the vector
@@ -29,16 +42,14 @@ int main()
 		index++;
 	}
 	
-	num_athletes = lines.size();
-	
 	// creates three pointer arrays for name, school, and max
 	// based on the size of the student vector
 	string* name = nullptr;
-	name = new string[num_athletes];
+	name = new string[lines.size()];
 	string* school = nullptr;
-	school = new string[num_athletes];
+	school = new string[lines.size()];
 	double* max = nullptr;
-	max = new double[num_athletes];
+	max = new double[lines.size()];
 
 	// calls getAthletes to input all of the athletes
 	// into a tri-parallel array
