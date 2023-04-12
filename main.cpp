@@ -31,7 +31,7 @@ int main()
 	string line;
 
 	// opens the file
-	ifstream in_file("C:\\Users\\SSC00042\\Desktop\\database-test.txt");
+	ifstream in_file("C:\\Users\\SSC00042\\Desktop\\athlete-database.txt");
 
 	// loops to read through each line in the file
 	// adds each line to the vector
