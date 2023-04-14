@@ -7,7 +7,41 @@ using namespace std;
 
 // function prototypes
 void getAthletes(vector<string>, string*, string*, double*);
-int displayMenu(int choice);
+int displayMenu(int);
+void scoreSort();
+vector<string> readFile();
+void throwTurns(string[], string*, int, int);
+void studLeaderboard(string*, string[], string[], int, int);
+void viewAthletes(string*, string*, double*, int);
+
+/*
+readFile accepts no arguments
+- reads the lines from a given file
+- outputs the vector of lines
+*/
+vector<string> readFile()
+{
+	// declares variables
+	vector<string> lines;
+	string line;
+
+	// opens the file
+	ifstream in_file("C:\\Users\\SSC00042\\Desktop\\athlete-database.txt");
+
+	// loops to read through each line in the file
+	// adds each line to the vector
+	int index = 0;
+	while (getline(in_file, line))
+	{
+		lines.push_back(line);
+		index++;
+	}
+
+	// closes the file
+	in_file.close();
+
+	return lines;
+}
 
 int main()
 {
@@ -28,20 +62,16 @@ int main()
 
 	// declares variables
 	vector<string> lines;
-	string line;
+	int num_athletes;
+	const int flights = 3;
+	const int rounds = 3;
+	string* throwsArray = nullptr;
+	throwsArray = new string[num_athletes * rounds * flights];
+	bool throw_done = 0;
 
-	// opens the file
-	ifstream in_file("C:\\Users\\SSC00042\\Desktop\\athlete-database.txt");
+	// gets the lines from the file from readFile
+	lines = readFile();
 
-	// loops to read through each line in the file
-	// adds each line to the vector
-	int index = 0;
-	while (getline(in_file, line))
-	{
-		lines.push_back(line);
-		index++;
-	}
-	
 	// creates three pointer arrays for name, school, and max
 	// based on the size of the student vector
 	string* name = nullptr;
@@ -55,22 +85,44 @@ int main()
 	// into a tri-parallel array
 	getAthletes(lines, name, school, max);
 
-	/* 
-	// menu stuff
+	// calls scoreSort to sort the athletes in the file
+	scoreSort();
+
+	// calls getAthletes again to get the sorted athletes
+	// and put them into a tri-parallel array
+	lines = readFile();
+	num_athletes = lines.size();
+	getAthletes(lines, name, school, max);
+
 	int choice = 0;
 
 	do
 	{
-		int choice = displayMenu();
+		choice = displayMenu(choice);
 		cout << endl << endl;
 
+		// throw option
 		if (choice == 1)
-			
+		{
+			throwTurns(name, throwsArray, flights, num_athletes);
+			throw_done = 1;
+
+		}
+		/* view leaderboard option
+		else if (choice == 2)
+		{
+			if (throw_done == 0)
+				"\nNo student has thrown.\n";
+			else
+				studLeaderboard(throwsArray, name, school, flights, num_athletes);
+		}
+		*/
+
+
 
 
 	} while (choice != 6);
 
-	*/
 	// deletes the pointer arrays
 	delete[] name;
 	name = nullptr;
@@ -78,10 +130,7 @@ int main()
 	school = nullptr;
 	delete[] max;
 	max = nullptr;
-
-	in_file.close();
 	return 0;
-
 
 	// string* ThrowsAway = nullptr;
 	// ThrowsAway = new string[athletes * num_athletes * flights]
