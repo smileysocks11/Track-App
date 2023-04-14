@@ -13,7 +13,7 @@ struct Athlete {
 };
 
 // Swaps the values of two Athlete variables
-void swapAthletes(Athlete &a, Athlete &b) {
+void swapAthletes(Athlete& a, Athlete& b) {
     Athlete temp = a;
     a = b;
     b = temp;
@@ -23,18 +23,17 @@ void swapAthletes(Athlete &a, Athlete &b) {
 void sortAthletes(Athlete athletes[], int numAthletes) {
     for (int i = 0; i < numAthletes - 1; i++) {
         for (int j = 0; j < numAthletes - i - 1; j++) {
-            if (athletes[j].score > athletes[j+1].score) {
-                swapAthletes(athletes[j], athletes[j+1]);
+            if (athletes[j].score > athletes[j + 1].score) {
+                swapAthletes(athletes[j], athletes[j + 1]);
             }
         }
     }
 }
 
-int main() {
-    ifstream inputFile("athlete-database.txt"); // Open the input file
+void scoreSort() {
+    ifstream inputFile("C:\\Users\\SSC00042\\Desktop\\athlete-database.txt"); // Open the input file
     if (!inputFile) { // Check if the input file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
-        return 1; // Exit the program with a non-zero return value to indicate an error
     }
 
     Athlete athletes[MAX_ATHLETES]; // Array to store the Athlete objects read from the file
@@ -59,10 +58,9 @@ int main() {
 
     sortAthletes(athletes, numAthletes); // Sort the array of Athletes in ascending order of score using bubble sort
 
-    ofstream outputFile("sorted-athletes.txt"); // Open the output file
+    ofstream outputFile("C:\\Users\\SSC00042\\Desktop\\database-test.txt"); // Open the output file
     if (!outputFile) { // Check if the output file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
-        return 1; // Exit the program with a non-zero return value to indicate an error
     }
 
     for (int i = 0; i < numAthletes; i++) {
@@ -73,6 +71,4 @@ int main() {
     outputFile.close();
 
     //cout << "Athletes sorted into sorted-athletes.txt" << endl;
-
-    return 0;
 }
