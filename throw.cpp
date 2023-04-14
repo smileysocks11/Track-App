@@ -4,20 +4,6 @@
 #include <cctype>
 using namespace std;
 
-void throwTurns(string athleteArray[], string* throwsArray, int flights, int athletes);
-
-int main()
-{
-
-	string a[5] = { "Jeff", "Joe", "John", "Jacob", "Jack" };
-
-	string* throwsArray = nullptr;
-	//the numbers represent in the following order: althletes, rounds, flights
-	throwsArray = new string[5 * 3 * 3];
-	const int flights = 3;
-	const int athletes = 5;
-	throwTurns(a, throwsArray, flights, athletes);
-}
 
 void throwTurns(string athleteArray[], string* throwsArray, int flights, int athletes)
 {
