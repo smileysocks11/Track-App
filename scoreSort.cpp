@@ -58,7 +58,7 @@ void scoreSort() {
 
     sortAthletes(athletes, numAthletes); // Sort the array of Athletes in ascending order of score using bubble sort
 
-    ofstream outputFile("C:\\Users\\SSC00042\\Desktop\\database-test.txt"); // Open the output file
+    ofstream outputFile("C:\\Users\\SSC00042\\Desktop\\athlete-database.txt"); // Open the output file
     if (!outputFile) { // Check if the output file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
     }
