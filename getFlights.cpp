@@ -1,37 +1,16 @@
 #include <iostream>
+#include <string>
+using namespace std;
 
-int getFlights();
-
-// test main file
-int main() {
-
-    // call getFlights
-    int flights = getFlights();
-
-    return 0;
-}
-
-int getFlights() {
+int getFlights(int num_athletes) {
     /*
      * gets the amount of flights for the meet
      * returns to main
      */
     int flights;
-
-    do {
-        std::cout << "How many flights are in the meet?\n>";
-
-        std::cin >> flights;
-
-        if (std::cin.fail()) {
-            std::cout << "Your input was not accepted. Please try again.\n\n";
-            std::cin.clear();
-            std::cin.ignore();
-            continue;
-        } else {
-            break;
-        }
-    } while (true);
+    cout << "There are " << num_athletes << " athletes attending the meet.\n";
+    cout << "How any flights would you like in this meet? ";
+    cin >> flights;
 
     return flights;
 }
