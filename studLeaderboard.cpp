@@ -1,66 +1,41 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <vector>
 using namespace std;
 
+struct athleteInfo
+{
+    string name, school;
+    double max, throw1, throw2, throw3, bestThrow;
+    int flightNum;
+};
+
 /*##########################
-# studLeaderboard accepts a float array with 3 attempts
-# from each athlete, 2 string arrays for the names and
-# schools of each athlete, and the num of flights and athletes
+# studLeaderboard accepts an array of all athletes
+# and the number of athletes in the array
 # It sorts students' info in order of best distance thrown
 # It outputs the leaderboard to the user
 ############################*/
-void studLeaderboard(float attempts[][3], string names[], string schools[], int flights, int numAthletes)
+void studLeaderboard(athleteInfo athletes[], int numAthletes)
 {
     // Initialize variables
-    const int NUM_ATHLETES = numAthletes;
     int counter = 0, feet = 0;
-    float tempFloat, best = 0, inches = 0;
-    string tempString;
-    vector<float> bestThrows(numAthletes);
-
-    // Populate bestThrows using attempts
-    for (int athlete = 0; athlete < numAthletes; athlete++)
-    {
-        // Loop through all throws the athlete made
-        for (int attempt = 0; attempt < 3; attempt++)
-        {
-            // Determine if the throw is the best the athlete made
-            if (attempts[athlete][attempt] > best)
-            {
-                best = attempts[athlete][attempt];
-            }
-        }
-
-        // Put the athlete's best attempt into bestThrows and reset
-        bestThrows[athlete] = best;
-        best = 0;
-    }
-
-    // Sort the 3 vectors in descending order
+    float best = 0, inches = 0;
+    athleteInfo tempAthlete;
+    
+    // Sort the array in descending order
     for (int maxElement = numAthletes - 1; maxElement > 0; maxElement--)
     {
         // Loop through the set area to check for anything out of order
         for (int index = 0; index < maxElement; index++)
 
             // Determine if the throws are in the right order
-            if (bestThrows[index] < bestThrows[index + 1])
+            if (athletes[index].bestThrow < athletes[index + 1].bestThrow)
             {
-                // Swap best throws
-                tempFloat = bestThrows[index];
-                bestThrows[index] = bestThrows[index + 1];
-                bestThrows[index + 1] = tempFloat;
-
-                // Swap names
-                tempString = *(names + index);
-                *(names + index) = *(names + index + 1);
-                *(names + index + 1) = tempString;
-
-                // Swap schools
-                tempString = *(names + index);
-                *(names + index) = *(names + index + 1);
-                *(names + index + 1) = tempString;
+                // Swap athletes
+                tempAthlete = athletes[index];
+                athletes[index] = athletes[index + 1];
+                athletes[index + 1] = tempAthlete;
             }
     }
 
@@ -68,16 +43,16 @@ void studLeaderboard(float attempts[][3], string names[], string schools[], int 
     for (int athlete = 0; athlete < numAthletes; athlete++)
     {
         // Determine how many feet are in the throw
-        while (bestThrows[athlete] - (12 * feet) >= 12)
+        while (athletes[athlete].bestThrow - (12 * feet) >= 12)
             feet++;
 
         // Determine how many inches are in the throw
-        inches = bestThrows[athlete] - (12 * feet);
+        inches = athletes[athlete].bestThrow - (12 * feet);
 
         // Output each piece of information for the athlete
-        cout << setw(4) << athlete + 1 << left << setw(25) << names[athlete];
+        cout << setw(4) << athlete + 1 << left << setw(25) << athletes[athlete].name;
         cout << fixed << showpoint << setprecision(2) << feet << " ft " << inches << " in\t";
-        cout << schools[athlete] << endl;
+        cout << athletes[athlete].school << endl;
 
         // Reset variables
         feet = 0;
