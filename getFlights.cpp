@@ -1,3 +1,5 @@
+#include <iostream>
+
 int getFlights();
 
 // test main file
@@ -15,8 +17,21 @@ int getFlights() {
      * returns to main
      */
     int flights;
-    std::cout << "How many flights are in the meet?\n>";
-    std::cin >> flights;
+
+    do {
+        std::cout << "How many flights are in the meet?\n>";
+
+        std::cin >> flights;
+
+        if (std::cin.fail()) {
+            std::cout << "Your input was not accepted. Please try again.\n\n";
+            std::cin.clear();
+            std::cin.ignore();
+            continue;
+        } else {
+            break;
+        }
+    } while (true);
 
     return flights;
 }
