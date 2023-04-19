@@ -36,7 +36,7 @@ void viewAthletes(athleteInfo athletes[], int flights, int numAthletes)
         for (athlete = 0; athlete < numAthletes; athlete++)
         {
             // Only output info if the athlete is in the current flight
-            if (athletes[athlete].flightNum == flight)
+            if (athletes[athlete].flightNum == flight + 1)
             {
                 // Output information for the athlete
                 cout << left << setw(25) << athletes[athlete].name;
