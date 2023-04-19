@@ -1,14 +1,22 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <vector>
 using namespace std;
 
+// Declare struct athleteInfo
+struct athleteInfo
+{
+    string name, school;
+    double max, throw1, throw2, throw3, bestThrow;
+    int flightNum;
+};
+
 /*##########################
-# viewAthletes accepts a pointer to the 3d array and the num of flights
+# viewAthletes accepts an array of athletes, the num of flights,
+# and the number of athletes in the array
 # It outputs all athletes in their separate flights
 ############################*/
-void viewAthletes(string*** athletes, int flights)
+void viewAthletes(athleteInfo athletes[], int flights, int numAthletes)
 {
     // Initialize variables
     int flight, athlete;
@@ -24,14 +32,19 @@ void viewAthletes(string*** athletes, int flights)
             << left << setw(25) << "School"
             << left << setw(25) << "High Score" << endl;
 
-        // Loop through all athletes in the flight
-        for (athlete = 0; athlete < (sizeof(**athletes[flight]) / sizeof(string)); athlete++)
+        // Loop through all athletes in the array
+        for (athlete = 0; athlete < numAthletes; athlete++)
         {
-            // Output information for the athlete
-            for (int info = 0; info < 3; info++)
-                cout << left << setw(25) << athletes[flight][athlete][info];
+            // Only output info if the athlete is in the current flight
+            if (athletes[athlete].flightNum == flight + 1)
+            {
+                // Output information for the athlete
+                cout << left << setw(25) << athletes[athlete].name;
+                cout << left << setw(25) << athletes[athlete].school;
+                cout << left << setw(25) << athletes[athlete].max;
 
-            cout << endl;
+                cout << endl;
+            }
         }
         cout << endl;
     }
