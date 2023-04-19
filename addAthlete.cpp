@@ -173,7 +173,7 @@ void addAthlete()
 			}
 
 			// Writes the new athlete's information to the file
-			athleteFile << endl << newLastname << ", " << newFirstname << "#" << newMax << "#" << newSchool << endl;
+			athleteFile << endl << newLastname << ", " << newFirstname << "#" << newMax << "#" << newSchool;
 
 			// Asks user if they would like to continue adding additional athletes
 			cout << "Would you like to continue adding additional athletes? (y/n): ";
