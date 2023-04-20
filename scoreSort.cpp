@@ -12,6 +12,10 @@ struct Athlete {
     string school;
 };
 
+// declares functions
+void swapAthletes(Athlete&, Athlete&);
+void sortAthletes(Athlete[], int);
+
 // Swaps the values of two Athlete variables
 void swapAthletes(Athlete& a, Athlete& b) {
     Athlete temp = a;
@@ -31,7 +35,7 @@ void sortAthletes(Athlete athletes[], int numAthletes) {
 }
 
 void scoreSort() {
-    ifstream inputFile("C:\\Users\\SSC00042\\Desktop\\athlete-database.txt"); // Open the input file
+    ifstream inputFile("C:\\Users\\SSC00042\\Desktop\\raw-athlete-database.txt"); // Open the input file
     if (!inputFile) { // Check if the input file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
     }
@@ -45,30 +49,30 @@ void scoreSort() {
         if (line.empty()) { // Skip empty lines
             continue;
         }
-        size_t pos1 = line.find(","); // Find the position of the first comma
-        size_t pos2 = line.find("#"); // Find the position of the first hash symbol
-        size_t pos3 = line.find_last_of("#"); // Find the position of the last hash symbol
-        if (pos1 != string::npos && pos2 != string::npos && pos3 != string::npos) { // Check if all three delimiters were found
-            athletes[numAthletes].name = line.substr(0, pos1); // Extract the name from the line
-            athletes[numAthletes].score = stod(line.substr(pos2 + 1, pos3 - pos2 - 1)); // Extract the score from the line and convert it to a double
-            athletes[numAthletes].school = line.substr(pos3 + 1); // Extract the school from the line
-            numAthletes++; // Increment the counter for the number of Athlete objects read
-        }
+        size_t pos1 = line.find("#"); // Find the position of the first hash symbol
+        size_t pos2 = line.find_last_of("#"); // Find the position of the last hash symbol
+        athletes[numAthletes].name = line.substr(0, pos1); // Extract the name from the line
+        athletes[numAthletes].score = stod(line.substr(pos1 + 1, pos2 - pos1 - 1)); // Extract the score from the line and convert it to a double
+        athletes[numAthletes].school = line.substr(pos2 + 1); // Extract the school from the line
+        numAthletes++; // Increment the counter for the number of Athlete objects read
     }
 
     sortAthletes(athletes, numAthletes); // Sort the array of Athletes in ascending order of score using bubble sort
-
-    ofstream outputFile("C:\\Users\\SSC00042\\Desktop\\athlete-database.txt"); // Open the output file
+    inputFile.close();
+    ofstream outputFile("C:\\Users\\SSC00042\\Desktop\\sorted-athlete-database.txt"); // Open the output file
     if (!outputFile) { // Check if the output file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
     }
 
-    for (int i = 0; i < numAthletes; i++) {
-        outputFile << athletes[i].score << ", " << athletes[i].name << ", " << athletes[i].school << endl;
+    for (int i = 0; i < numAthletes; i++)
+    {
+        if (i == numAthletes - 1)
+            outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school;
+        else
+            outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school << endl;
     }
 
-    inputFile.close(); // Close the file
-    outputFile.close();
 
-    //cout << "Athletes sorted into sorted-athletes.txt" << endl;
+    // Close the file
+    outputFile.close();
 }

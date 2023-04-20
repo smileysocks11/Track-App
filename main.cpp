@@ -7,26 +7,27 @@ using namespace std;
 
 // function prototypes
 void getAthletes(vector<string>, string*, string*, double*);
-int displayMenu(int);
+int displayMenu(int, bool);
 void scoreSort();
-vector<string> readFile();
+vector<string> readFile(string);
 void throwTurns(string[], string*, int, int);
 void studLeaderboard(string*, string[], string[], int, int);
 void viewAthletes(string*, string*, double*, int);
+int getFlights(int);
 
 /*
 readFile accepts no arguments
 - reads the lines from a given file
 - outputs the vector of lines
 */
-vector<string> readFile()
+vector<string> readFile(string file_name)
 {
 	// declares variables
 	vector<string> lines;
 	string line;
 
 	// opens the file
-	ifstream in_file("C:\\Users\\SSC00042\\Desktop\\athlete-database.txt");
+	ifstream in_file(file_name);
 
 	// loops to read through each line in the file
 	// adds each line to the vector
@@ -53,24 +54,23 @@ int main()
 	Py_Initialize();
 	PyObject* obj = Py_BuildValue("s", argv[0]);
 	FILE* file = _Py_fopen_obj(obj, "r");
-	if (file) {
+	if (file)
 		PyRun_SimpleFile(file, argv[0]);
-		cout << "yes";
-	}
 	Py_Finalize();
 
 
 	// declares variables
 	vector<string> lines;
 	int num_athletes;
-	const int flights = 3;
+	int flights;
 	const int rounds = 3;
 	string* throwsArray = nullptr;
-	throwsArray = new string[num_athletes * rounds * flights];
 	bool throw_done = 0;
+	string file_name;
 
 	// gets the lines from the file from readFile
-	lines = readFile();
+	file_name = "C:\\Users\\SSC00042\\Desktop\\raw-athlete-database.txt";
+	lines = readFile(file_name);
 
 	// creates three pointer arrays for name, school, and max
 	// based on the size of the student vector
@@ -90,15 +90,20 @@ int main()
 
 	// calls getAthletes again to get the sorted athletes
 	// and put them into a tri-parallel array
-	lines = readFile();
+	file_name = "C:\\Users\\SSC00042\\Desktop\\sorted-athlete-database.txt";
+	lines = readFile(file_name);
 	num_athletes = lines.size();
+
+	// calls getFlights to get the number of flights from the user
+	flights = getFlights(num_athletes);
+	throwsArray = new string[num_athletes * rounds * flights];
 	getAthletes(lines, name, school, max);
 
 	int choice = 0;
 
 	do
 	{
-		choice = displayMenu(choice);
+		choice = displayMenu(choice, throw_done);
 		cout << endl << endl;
 
 		// throw option
