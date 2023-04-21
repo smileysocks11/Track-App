@@ -1,8 +1,10 @@
+// Carolyn Henderson
 #include <iostream>
 #include <string>
 #include <vector>
 using namespace std;
 
+// Declare structure
 struct athleteInfo
 {
 	string name, school, max, throw1, throw2, throw3, bestThrow;
