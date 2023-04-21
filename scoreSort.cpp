@@ -1,4 +1,4 @@
-#include <iostream>                                                                         // Cloven Lo
+#include <iostream>
 #include <fstream>
 #include <string>
 
@@ -6,53 +6,59 @@ using namespace std;
 
 const int MAX_ATHLETES = 100; // Maximum number of athletes that can be read from the input file
 
-struct Athlete {
+struct Athletes {
     string name;
-    double score;
+    string score;
     string school;
+    double feet;
+    double inches;
 };
 
 // declares functions
-void swapAthletes(Athlete&, Athlete&);
-void sortAthletes(Athlete[], int);
+void swapAthletes(Athletes&, Athletes&);
+void sortAthletes(Athletes[], int);
 
 // Swaps the values of two Athlete variables
-void swapAthletes(Athlete& a, Athlete& b) {
-    Athlete temp = a;
+void swapAthletes(Athletes& a, Athletes& b) {
+    Athletes temp = a;
     a = b;
     b = temp;
 }
 
 // Sorts the array of Athletes in ascending order of score using bubble sort
-void sortAthletes(Athlete athletes[], int numAthletes) {
+void sortAthletes(Athletes athletes[], int numAthletes) {
     for (int i = 0; i < numAthletes - 1; i++) {
         for (int j = 0; j < numAthletes - i - 1; j++) {
-            if (athletes[j].score > athletes[j + 1].score) {
+            if (athletes[j].feet > athletes[j + 1].feet)
                 swapAthletes(athletes[j], athletes[j + 1]);
-            }
+            else if (athletes[j].inches > athletes[j + 1].inches)
+                swapAthletes(athletes[j], athletes[j + 1]);
         }
     }
 }
 
-void scoreSort() {
+Athletes* scoreSort(Athletes* athletes) {
+
     ifstream inputFile("C:\\Users\\SSC00042\\Desktop\\raw-athlete-database.txt"); // Open the input file
     if (!inputFile) { // Check if the input file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
     }
 
-    Athlete athletes[MAX_ATHLETES]; // Array to store the Athlete objects read from the file
     int numAthletes = 0; // Counter to keep track of the number of Athlete objects read from the file
 
-    while (inputFile && numAthletes < MAX_ATHLETES) { // Read Athlete objects from the file until the end of file is reached or the maximum number of Athletes is read
+    while (inputFile && numAthletes < MAX_ATHLETES) { // Read Athlete objects from the file until the end of file is reached
+
         string line;
-        getline(inputFile, line); // Read a line from the file
-        if (line.empty()) { // Skip empty lines
-            continue;
-        }
+        getline(inputFile, line);
+        cout << line;
+
         size_t pos1 = line.find("#"); // Find the position of the first hash symbol
         size_t pos2 = line.find_last_of("#"); // Find the position of the last hash symbol
+        size_t pos3 = line.find_last_of('-');
         athletes[numAthletes].name = line.substr(0, pos1); // Extract the name from the line
-        athletes[numAthletes].score = stod(line.substr(pos1 + 1, pos2 - pos1 - 1)); // Extract the score from the line and convert it to a double
+        athletes[numAthletes].score = line.substr(pos1 + 1, pos2 - pos1 - 1); // Extract the score from the line and convert it to a double
+        athletes[numAthletes].feet = stod(line.substr(pos1 + 1, pos3 - 1));
+        athletes[numAthletes].inches = stod(line.substr(pos3 + 1, pos2 - 1));
         athletes[numAthletes].school = line.substr(pos2 + 1); // Extract the school from the line
         numAthletes++; // Increment the counter for the number of Athlete objects read
     }
@@ -75,4 +81,7 @@ void scoreSort() {
 
     // Close the file
     outputFile.close();
+
+    // returns the structure array
+    return athletes;
 }
