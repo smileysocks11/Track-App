@@ -5,6 +5,8 @@
 #include <cmath>
 using namespace std;
 
+//Landon Marcotte
+
 struct Athletes
 {
 	string name;

@@ -4,6 +4,8 @@
 #include <cctype>
 using namespace std;
 
+//Landon Marcotte
+
 struct Athletes
 {
 	string name;
