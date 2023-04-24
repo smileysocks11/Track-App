@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import re
 
 # opens file
-file = open('C:\\Users\\SSC00042\\Desktop\\raw-athlete-database.txt', 'w')
+file = open('C:\\track_data\\raw-athletes.txt', 'w')
 
 url = "https://ks.milesplit.com/meets/529934-eisenhower-high-school-participation-meet-2023/entries#.ZC25jHbMLIU"
 page = requests.get(url)
