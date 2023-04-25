@@ -79,15 +79,16 @@ void scoreSort(Athletes* athletes) {
     }
 
     for (int i = 0; i < numAthletes; i++)
+{
+    if (i == numAthletes - 1)
     {
-        if (i == numAthletes - 1)
-        {
-            outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school;
-        }
-        else
-            cout << athletes[i].name << endl;
-            outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school << endl;
+        outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school;
     }
+    else {
+        cout << athletes[i].name << endl;
+        outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school << endl;
+    }
+}
 
 
     // Close the file
