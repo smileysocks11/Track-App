@@ -1,12 +1,13 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <set>
 
 using namespace std;
 
 const int MAX_ATHLETES = 100; // Maximum number of athletes that can be read from the input file
 
-struct Athletes {
+struct Athlete {
     string name;
     string score;
     string school;
@@ -15,31 +16,106 @@ struct Athletes {
 };
 
 // declares functions
-void swapAthletes(Athletes&, Athletes&);
-void sortAthletes(Athletes[], int);
+void swapAthletes(Athlete&, Athlete&);
+void sortAthletes(Athlete[], int);
+bool deleteDuplicates(Athlete[], int&);
+void writeAthletes(Athlete[], int);
 
 // Swaps the values of two Athlete variables
-void swapAthletes(Athletes& a, Athletes& b) {
-    Athletes temp = a;
+void swapAthletes(Athlete& a, Athlete& b) {
+    Athlete temp = a;
     a = b;
     b = temp;
 }
 
 // Sorts the array of Athletes in ascending order of score using bubble sort
-void sortAthletes(Athletes athletes[], int numAthletes) {
+void sortAthletes(Athlete athletes[], int numAthletes) {
     for (int i = 0; i < numAthletes - 1; i++) {
         for (int j = 0; j < numAthletes - i - 1; j++) {
-            if (athletes[j].feet > athletes[j + 1].feet && athletes[j].score != "-1")
+            if (athletes[j].score > athletes[j + 1].score && athletes[j].score != "-1") {
                 swapAthletes(athletes[j], athletes[j + 1]);
-            else if (athletes[j].inches > athletes[j + 1].inches)
-                swapAthletes(athletes[j], athletes[j + 1]);
+            }
         }
     }
 }
 
+// Deletes athletes with duplicate names from the array and returns true if any duplicates were found
+bool deleteDuplicates(Athlete athletes[], int& numAthletes) {
+    bool deleted = false;
+    for (int i = 0; i < numAthletes; i++) {
+        if ((i > 0 && athletes[i].name == athletes[i - 1].name) ||
+            (i < numAthletes - 1 && athletes[i].name == athletes[i + 1].name)) {
+            athletes[i].score = "-1";
+            deleted = true;
+        }
+    }
+    return deleted;
+}
+
+// Writes the sorted array of Athletes to an output file, deleting duplicates
+void writeAthletes(Athletes* athletes, int numAthletes) {
+
+    // Open the input file
+    ifstream inputFile("C:\\track_data\\raw-athletes.txt");
+    if (!inputFile) {
+        cerr << "Error opening file" << endl;
+        return;
+    }
+
+    // Open the output file
+    ofstream outputFile("C:\\track_data\\sorted-athletes.txt");
+    if (!outputFile) {
+        cerr << "Error opening file" << endl;
+        inputFile.close();
+        return;
+    }
+
+    // Declare an array to keep track of which Athletes to delete
+    bool deleteAthlete[MAX_ATHLETES] = { false };
+
+    // Read the input file line by line and mark duplicates for deletion
+    string line;
+    while (getline(inputFile, line)) {
+        try {
+            size_t pos1 = line.find("#");
+            string name = line.substr(0, pos1);
+
+            // Check if the name is a duplicate
+            bool duplicateFound = false;
+            for (int i = 0; i < numAthletes; i++) {
+                if (athletes[i].name == name) {
+                    if (!duplicateFound) {
+                        // This is the first occurrence of a duplicate name, don't delete it
+                        duplicateFound = true;
+                    }
+                    else {
+                        // This is the second occurrence of a duplicate name, mark it for deletion
+                        deleteAthlete[i] = true;
+                    }
+                }
+            }
+        }
+        catch (exception) {
+            // Handle any exceptions that may occur while processing the file
+            cerr << "Error processing line: " << line << endl;
+        }
+    }
+
+    // Write the sorted and de-duplicated Athletes to the output file
+    for (int i = 0; i < numAthletes; i++) {
+        if (!deleteAthlete[i]) {
+            outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school << endl;
+        }
+    }
+
+    // Close the input and output files
+    inputFile.close();
+    outputFile.close();
+}
+
 void scoreSort(Athletes* athletes) {
 
-    ifstream inputFile("C:\\track_data\\raw-athletes.txt"); // Open the input file
+    ifstream inputFile("C:\\track_data\\raw-athlete-database.txt"); // Open the input file
     if (!inputFile) { // Check if the input file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
     }
@@ -59,36 +135,36 @@ void scoreSort(Athletes* athletes) {
             if (athletes[numAthletes].score != "-1")
             {
                 athletes[numAthletes].feet = stod(line.substr(pos1 + 1, pos3 - pos1 - 1));
-                athletes[numAthletes].inches = stod(line.substr(pos3 + 1, pos2 - pos1 - 1));
+                athletes[numAthletes].inches = stod(line.substr(pos3 + 1, pos2 - pos3 - 1));
             }
             numAthletes++;
-            cout << line << endl;
-        } 
-        catch (exception)
+        }
+        catch (exception e) // Catch the exception thrown by stod() function
         {
-            cout << numAthletes << endl;
-
+            cerr << "Error converting score for athlete " << numAthletes + 1 << endl;
+            cerr << e.what() << endl;
         }
     }
 
     sortAthletes(athletes, numAthletes); // Sort the array of Athletes in ascending order of score using bubble sort
     inputFile.close();
+
     ofstream outputFile("C:\\track_data\\sorted-athletes.txt"); // Open the output file
     if (!outputFile) { // Check if the output file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
     }
 
     for (int i = 0; i < numAthletes; i++)
-{
-    if (i == numAthletes - 1)
     {
-        outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school;
+        if (i == numAthletes - 1)
+        {
+            outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school;
+        }
+        else {
+            cout << athletes[i].name << endl;
+            outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school << endl;
+        }
     }
-    else {
-        cout << athletes[i].name << endl;
-        outputFile << athletes[i].name << "#" << athletes[i].score << "#" << athletes[i].school << endl;
-    }
-}
 
 
     // Close the file
