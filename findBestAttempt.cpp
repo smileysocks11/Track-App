@@ -99,7 +99,6 @@ void findBestAttempt(athleteInfo athletes[], int numAthletes)
 		}
 
 		// Reset variables
-		cout << throwNum + 1 << " Best: " << bestStr << endl;
 		inStr = ftStr = "";
 		inches = 0;
 		hitDash = false;
