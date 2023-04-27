@@ -17,9 +17,9 @@ struct Athletes
 	int flightNum = 0;
 };
 
-void finals(Athletes* a, int athletes);
+void finals(Athletes a[], int athletes);
 
-void finals(Athletes* a, int athletes)
+void finals(Athletes a[], int athletes)
 {
 	//variables for holding the best throws
 	double tempF = 0, tempI = 0, tempQ = 0, tempTotal = 0;
