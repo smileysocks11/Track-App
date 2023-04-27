@@ -4,14 +4,29 @@
 #include <cctype>
 using namespace std;
 
+//Landon Marcotte
 
-void throwTurns(string athleteArray[], string* throwsArray, int flights, int athletes)
+struct Athletes
+{
+	string name;
+	string school;
+	string max;
+	string throw1, throw2, throw3;
+	string bestThrow;
+	int flightNum = 0;
+};
+
+void throwTurns(Athletes* a, int flights, int athletes);
+
+void throwTurns(Athletes* a, int flights, int athletes)
 {
 	/*use the loop to loop thorugh the array until all the athles from a single flight has
 	the array is a 3D array where the first colum has the names of the students
 	the second has the school they go to and the third has their best throw
 	A failed attempt is a DQ in the stystem
 	fill the first flight with more people than tht others if there are left*/
+
+
 
 	int div = athletes / flights;
 	char choice;
@@ -20,7 +35,6 @@ void throwTurns(string athleteArray[], string* throwsArray, int flights, int ath
 	string measure;
 	int tossCheck;
 	bool scoreCheck = true;
-	int name;
 
 
 	int count = 0, amount = 0;
@@ -44,12 +58,30 @@ void throwTurns(string athleteArray[], string* throwsArray, int flights, int ath
 		}
 		count = 0;
 
+		for (int f = 0; f < 10; f++)
+		{
+			for (int i = 0; i < inFlights[f]; i++)
+			{
+				a[count].flightNum = f + 1;
+				count++;
+			}
+		}
+		count = 0;
 	}
 	else {
 		for (int i = 0; i < flights; i++)
 		{
 			inFlights[i] += div;
 		}
+		for (int f = 0; f < 10; f++)
+		{
+			for (int i = 0; i < inFlights[f]; i++)
+			{
+				a[count].flightNum = f + 1;
+				count++;
+			}
+		}
+		count = 0;
 	}
 
 	for (int i = 0; i < flights; i++)
@@ -57,26 +89,16 @@ void throwTurns(string athleteArray[], string* throwsArray, int flights, int ath
 		cout << "\nThere will be " << inFlights[i] << " people in flight " << i + 1 << ".\n";
 	}
 
+
 	for (int f = 0; f < flights; f++)
 	{
 		for (int r = 0; r < 3; r++)
 		{
-			for (int pass = 0; pass < inFlights[f]; pass++)
+			count = amount;
+			for (int i = 0; i < inFlights[f]; i++)
 			{
-				if (f > 0)
-				{
-					amount = 0;
-					for (int i = 0; i < f; i++)
-					{
-						amount += inFlights[i];
-					}
-					name = amount + pass;
-				}
-				else
-				{
-					name = pass;
-				}
-				cout << "\nIs " << athleteArray[name] << " here to throw?\n(y/n)>";
+
+				cout << "\nIs " << a[count].name << " here to throw?\n(y/n)>";
 				cin >> choice;
 				while (choice != 'n' && choice != 'y')
 				{
@@ -159,16 +181,27 @@ void throwTurns(string athleteArray[], string* throwsArray, int flights, int ath
 					}
 					//add a throw to the array
 					//format for enter the numbers into the array 105-2.5
-					(throwsArray[name * r * f]) = tossFt + "-" + tossIn + "." + tossQtr;
-					cout << (throwsArray[name * r * f]) << endl;
+					if (r == 0)
+					{
+						a[count].throw1 = tossFt + "-" + tossIn + "." + tossQtr;
+					}
+					if (r == 1)
+					{
+						a[count].throw2 = tossFt + "-" + tossIn + "." + tossQtr;
+					}
+					if (r == 2)
+					{
+						a[count].throw3 = tossFt + "-" + tossIn + "." + tossQtr;
+					}
+					cout << a[count].throw1 << endl;
 				}
 				tossFt.clear();
 				tossIn.clear();
 				tossQtr.clear();
-				//count++;
+				count++;
 			}
 		}
-		count++;
+		amount += inFlights[f];
 	}
 }
 
