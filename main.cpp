@@ -29,7 +29,15 @@ int main()
 	// repository creator
 	wstring filePath = L"C:\\track_data";
 	LPCWSTR path = filePath.c_str();
-
+	if (CreateDirectory(path, NULL))
+	{
+		cout << "\nDirectory created: ";
+		wcout << filePath << endl;
+	}
+	else
+	{
+		cout << "Directory creation failed or directory already exists.";
+	}
 	// python
 	const char* argv[2];
 	argv[0] = "C:\\track_data\\webscrape.py";
