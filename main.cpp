@@ -27,7 +27,7 @@ int getNumAthletes();
 int main()
 {
 	// repository creator
-	wstring filePath = L"C://track_data";
+	wstring filePath = L"C:\\track_data";
 	LPCWSTR path = filePath.c_str();
 
 	// python
