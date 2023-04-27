@@ -16,9 +16,9 @@ struct Athletes
 	int flightNum = 0;
 };
 
-void throwTurns(Athletes* a, int flights, int athletes);
+void throwTurns(Athletes a[], int flights, int athletes);
 
-void throwTurns(Athletes* a, int flights, int athletes)
+void throwTurns(Athletes a[], int flights, int athletes)
 {
 	/*use the loop to loop thorugh the array until all the athles from a single flight has
 	the array is a 3D array where the first colum has the names of the students

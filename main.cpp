@@ -11,13 +11,16 @@ struct Athletes
 	string name;
 	string school;
 	string max;
-
+	string throw1, throw2, throw3;
+	string bestThrow;
+	int flightNum;
 };
 
 // function prototypes
 int displayMenu(int, bool);
 void scoreSort(Athletes*);
 void throwTurns(Athletes[], int, int);
+void finals(Athletes[], int);
 void studLeaderboard(string*, string[], string[], int, int);
 void viewAthletes(string*, string*, string*, int);
 int getFlights(int);
