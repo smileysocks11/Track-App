@@ -19,27 +19,6 @@ struct Athletes
 
 void finals(Athletes* a, int athletes);
 
-int main()
-{
-	int at = 8;
-
-	Athletes* ar = nullptr;
-	ar = new Athletes[at];
-	ar[0].bestThrow = "123-1.1";
-	ar[1].bestThrow = "123-1.2";
-	ar[2].bestThrow = "124-1.1";
-	ar[3].bestThrow = "125-1.1";
-	ar[4].bestThrow = "128-1.1";
-	ar[5].bestThrow = "129-1.1";
-	ar[6].bestThrow = "130-1.1";
-	ar[7].bestThrow = "131-1.1";
-	for (int i = 0; i < 8; i++)
-	{
-		ar[i].flightNum = 1;
-	}
-	finals(ar, at);
-}
-
 void finals(Athletes* a, int athletes)
 {
 	//variables for holding the best throws
