@@ -48,7 +48,7 @@ int getNumAthletes()
 		}
 
 		// Closes file and returns num of athletes
+		inFile.close();
 		return numAthletes;
 	}
-	inFile.close();
 }
