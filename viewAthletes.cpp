@@ -10,6 +10,7 @@ struct Athletes
     string name, school;
     string max, throw1, throw2, throw3, bestThrow;
     int flightNum;
+    double bestDouble;
 };
 
 /*##########################
