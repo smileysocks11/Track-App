@@ -16,20 +16,20 @@ struct Athletes {
 
 // Uses getNumAthletes
 void getNumAthletes(int numAthletes);
-void populateStructure(int);
 void output(Athletes [], int);
-void scoreSort(Athletes [], double);
+void scoreSort(int);
+void populateStructure(Athletes [], double);
 
 // Uses numAthlete from getNumAthletes.cpp
 
 
-void populateStructure(int numAthletes)
+void scoreSort(int numAthletes)
 {
     Athletes* athleteArr = new Athletes[numAthletes];
 
     // Populate and output the array of structs
     cout << "Populating the structure from a file...\n\n";
-    scoreSort(athleteArr, numAthletes);
+    populateStructure(athleteArr, numAthletes);
     cout << "\nOutputting Athletes from the structure...\n\n";
     output(athleteArr, numAthletes);
 
@@ -37,7 +37,7 @@ void populateStructure(int numAthletes)
     delete[] athleteArr;
 }
 
-void scoreSort(Athletes athletes[], double numAthletes)
+void populateStructure(Athletes [], double numAthletes)
 {
 
     // Declare Variables
