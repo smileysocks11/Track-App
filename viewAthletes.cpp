@@ -5,10 +5,10 @@
 using namespace std;
 
 // Declare struct athleteInfo
-struct athleteInfo
+struct Athletes
 {
     string name, school;
-    double max, throw1, throw2, throw3, bestThrow;
+    string max, throw1, throw2, throw3, bestThrow;
     int flightNum;
 };
 
@@ -17,7 +17,7 @@ struct athleteInfo
 # and the number of athletes in the array
 # It outputs all athletes in their separate flights
 ############################*/
-void viewAthletes(athleteInfo athletes[], int flights, int numAthletes)
+void viewAthletes(Athletes athletes[], int flights, int numAthletes)
 {
     // Initialize variables
     int flight, athlete;

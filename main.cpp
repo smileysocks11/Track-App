@@ -18,11 +18,11 @@ struct Athletes
 
 // function prototypes
 int displayMenu(int, bool);
-void scoreSort(Athletes*);
+void scoreSort(Athletes[], int&);
 void throwTurns(Athletes[], int, int);
 void finals(Athletes[], int);
 void studLeaderboard(string*, string[], string[], int, int);
-void viewAthletes(string*, string*, string*, int);
+void viewAthletes(Athletes[], int, int);
 int getFlights(int);
 void addAthlete();
 int getNumAthletes();
@@ -67,7 +67,7 @@ int main()
 	athletes = new Athletes[num_athletes];
 
 	// calls scoreSort to sort the athletes in the file
-	scoreSort(athletes);
+	scoreSort(athletes, num_athletes);
 	// cout << athletes[0].name << endl;
 
 	// calls getFlights to get the number of flights from the user
@@ -85,8 +85,8 @@ int main()
 		{
 			// adds athlete
 			addAthlete();
-			scoreSort(athletes);
 			num_athletes = getNumAthletes();
+			scoreSort(athletes, num_athletes);
 
 
 		}
@@ -99,7 +99,11 @@ int main()
 			// runs the throws
 			throwTurns(athletes, flights, num_athletes);
 		}
-
+		//view althletes
+		else if (choice == 3)
+		{
+			viewAthletes(athletes, flights, num_athletes);
+		}
 
 
 

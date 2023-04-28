@@ -5,7 +5,7 @@
 using namespace std;
 
 // initialize structures
-struct athletes
+struct Athletes
 {
 	string name;
 	string school;
@@ -16,8 +16,8 @@ struct athletes
 };
 
 // initialize prototypes
-void manualAdjust(athletes allAthletes[], int totalAthletes, int totalFlights);
-void viewAthletes(athletes athletes[], int flights, int numAthletes); // CH
+void manualAdjust(Athletes allAthletes[], int totalAthletes, int totalFlights);
+void viewAthletes(Athletes athletes[], int flights, int numAthletes); // CH
 
 /*int main() >>>> USED FOR EXAMPLES
 {
@@ -54,7 +54,7 @@ move an athlete to another flight, if so,
 ask for the name and the flight and then change
 the athlete's flight number (flightNum).
 *///######################################
-void manualAdjust(athletes allAthletes[], int totalAthletes, int totalFlights)
+void manualAdjust(Athletes allAthletes[], int totalAthletes, int totalFlights)
 {
 
 	// initialize variables
