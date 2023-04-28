@@ -17,27 +17,6 @@ struct athletes {
 
 bool athleteChecker(const athletes& athlete);
 
-int main() {
-    /*
-     * this is a test main function
-     * it calls functions and creates test variables
-     * inside of the test struct
-     */
-
-    athletes athlete;
-
-    // simulating a void throw
-    athlete.name = "Jerry";
-
-    athlete.throw1 = "54";
-    athlete.throw2 = "";
-    athlete.throw3 = "694";
-
-    bool finishedThrowing = athleteChecker(athlete);
-
-    return 0;
-}
-
 bool athleteChecker(const athletes& athlete) {
     /*
      * checks if the provided athlete has missed any throws
