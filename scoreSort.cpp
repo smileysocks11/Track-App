@@ -19,23 +19,6 @@ struct Athletes {
 void output(Athletes [], int);
 void scoreSort(Athletes [], int&);
 
-int main()
-{
-    // dynamically create an array of Throwers
-    Athletes* athleteArr = new Athletes[100];
-
-    int numAthletes = 0; // keep track of the number of Athletes objects in the array
-
-    // Populate and output the array of structs
-    cout << "Populating the structure from a file...\n\n";
-    scoreSort(athleteArr, numAthletes);
-    cout << "\nOutputting Athletes from the structure...\n\n";
-    output(athleteArr, numAthletes);
-
-    // delete the dynamic array
-    delete[] athleteArr;
-}
-
 void scoreSort(Athletes athletes[], int& numAthletes)
 {
     // Declare Variables
