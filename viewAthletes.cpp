@@ -7,9 +7,9 @@ using namespace std;
 // Declare struct athleteInfo
 struct athleteInfo
 {
-    string name, school;
-    double max, throw1, throw2, throw3, bestThrow;
+    string name, school, max, throw1, throw2, throw3, bestThrow;
     int flightNum;
+    double bestDouble;
 };
 
 /*##########################
