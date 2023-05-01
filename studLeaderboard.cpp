@@ -23,7 +23,7 @@ void studLeaderboard(Athletes athletes[], int numAthletes)
     // Initialize variables
     int counter = 0;
     float best = 0;
-    athleteInfo tempAthlete;
+    Athletes tempAthlete;
 
     // Sort the array in descending order
     for (int maxElement = numAthletes - 1; maxElement > 0; maxElement--)
