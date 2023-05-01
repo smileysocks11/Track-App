@@ -5,7 +5,7 @@
 using namespace std;
 
 // Declare structure
-struct athleteInfo
+struct Athletes
 {
 	string name, school, max, throw1, throw2, throw3, bestThrow;
 	int flightNum;
@@ -18,7 +18,7 @@ struct athleteInfo
 # It finds the best attempt for each student, and
 # adds it to the array
 ##############################*/
-void findBestAttempt(athleteInfo athletes[], int numAthletes)
+void findBestAttempt(Athletes athletes[], int numAthletes)
 {
 	// Initialize variables and constants
 	const int ROUNDS = 3;
