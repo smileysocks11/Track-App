@@ -15,15 +15,14 @@ struct Athletes {
 };
 
 // Uses getNumAthletes
-void getNumAthletes(int numAthletes);
 void output(Athletes [], int);
-void scoreSort(int);
-void populateStructure(Athletes [], double);
+void scoreSort(Athletes athletes[], int&);
+void populateStructure(Athletes [], int);
 
 // Uses numAthlete from getNumAthletes.cpp
 
 
-void scoreSort(int numAthletes)
+void scoreSort(Athletes athletes[], int& numAthletes)
 {
     Athletes* athleteArr = new Athletes[numAthletes];
 
@@ -37,12 +36,13 @@ void scoreSort(int numAthletes)
     delete[] athleteArr;
 }
 
-void populateStructure(Athletes [], double numAthletes)
+void populateStructure(Athletes athletes[], int numAthletes)
 {
 
     // Declare Variables
     string name, school, score, line;
-    double feet, inches, numAthlete;
+    double feet, inches;
+    int numAthlete = 0;
 
     // Open the input file
     ifstream inputFile("C:\\track_data\\raw-athlete-database.txt");
