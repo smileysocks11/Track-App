@@ -2,9 +2,10 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+using namespace std;
 //Cloven Lo
 
-using namespace std;
+
 
 struct Athletes {
     string name;
@@ -15,9 +16,9 @@ struct Athletes {
 };
 
 // Uses getNumAthletes
-void output(Athletes [], int);
+void output(Athletes[], int);
 void scoreSort(Athletes athletes[], int&);
-void populateStructure(Athletes [], int);
+void populateStructure(Athletes[], int);
 
 // Uses numAthlete from getNumAthletes.cpp
 
@@ -36,67 +37,61 @@ void scoreSort(Athletes athletes[], int& numAthletes)
     delete[] athleteArr;
 }
 
-void populateStructure(Athletes athletes[], int numAthletes)
+void populateStructure(Athletes athletes[], int totalAthletes)
 {
 
     // Declare Variables
     string name, school, score, line;
     double feet, inches;
-    int numAthlete = 0;
+    int numAthletes = 0;
 
     // Open the input file
-    ifstream inputFile("C:\\track_data\\raw-athlete-database.txt");
+    ifstream inputFile("C:\\track_data\\raw-athletes.txt");
     if (!inputFile) { // Check if the input file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
         return;
     }
 
-    while( getline(inputFile, line)) {
-        numAthlete++;
-        while (numAthlete < numAthletes && inputFile) {
-            getline(inputFile, line);
-            if (line.empty()) {
-                continue; // Skip empty lines
-            }
+    while (inputFile && numAthletes < totalAthletes) {
+        string line;
+        getline(inputFile, line);
+        if (line.empty()) {
+            continue; // Skip empty lines
+        }
+        cout << line << endl;
 
-            size_t pos1 = line.find("#"); // Find the position of the first hash symbol
-            size_t pos2 = line.find_last_of("#"); // Find the position of the last hash symbol
-            size_t pos3 = line.find_last_of('-');
+        size_t pos1 = line.find("#"); // Find the position of the first hash symbol
+        size_t pos2 = line.find_last_of("#"); // Find the position of the last hash symbol
+        size_t pos3 = line.find_last_of('-');
 
-            // Check if pos1 and pos3 are not equal to string::npos before extracting the feet and inches values #PROBLEM HERE!!!
-            if (pos1 == string::npos || pos3 == string::npos) {
-                cerr << "Error: Invalid input format in input line " << numAthletes + 1 << endl;
-                continue; // Skip the current line and move on to the next line
-            }
+        // Check if pos1 and pos3 are not equal to string::npos before extracting the feet and inches values #PROBLEM HERE!!!
+        if (pos1 == string::npos || pos3 == string::npos) {
+            cerr << "Error: Invalid input format in input line " << numAthletes + 1 << endl;
+            continue; // Skip the current line and move on to the next line
+        }
 
-            // Extract each substring from the input line and assign to the appropriate variable
-            name = line.substr(0, pos1);
-            score = line.substr(pos1 + 1, pos2 - pos1 - 1);
-            school = line.substr(pos2 + 1);
-
-            // Check if the feet and inches substrings can be converted to valid double values
-            // using stringstream
-            stringstream ss(line.substr(pos1 + 1, pos3 - 1));
-            if (!(ss >> feet)) {
-                cerr << "" << numAthletes + 1 << endl;
-                continue; // Skip the current line and move on to the next line
-            }
-
-            ss = stringstream(line.substr(pos3 + 1, pos2 - 1));
-            if (!(ss >> inches)) {
-                cerr << "Error: Invalid inches value in input line " << numAthletes + 1 << endl;
-                continue; // Skip the current line and move on to the next line
-            }
-
-            // Add each to the structure
-            athletes[numAthletes].name = name;
-            athletes[numAthletes].score = score;
+        // Extract each substring from the input line and assign to the appropriate variable
+        name = line.substr(0, pos1);
+        score = line.substr(pos1 + 1, pos2 - pos1 - 1);
+        school = line.substr(pos2 + 1);
+        // converts to feet and inches if the athlete has a previous score
+        if (score != "-1")
+        {
+            feet = stod(line.substr(pos1 + 1, pos3 - 1));
+            inches = stod(line.substr(pos3 + 1, pos2 - 1));
             athletes[numAthletes].feet = feet;
             athletes[numAthletes].inches = inches;
-            athletes[numAthletes].school = school;
-            numAthletes++; // Increment the counter for the number of Athlete objects read
+            cout << "yeah\n";
         }
+
+        // Add each to the structure
+        athletes[numAthletes].name = name;
+        athletes[numAthletes].score = score;
+        athletes[numAthletes].school = school;
+        cout << athletes[numAthletes].name << endl;
+        numAthletes++; // Increment the counter for the number of Athlete objects read
     }
+
     inputFile.close();
     cout << "\nThere were " << numAthletes << " total lines read from the file.\n";
     cout << "\n------------------------------";
@@ -105,8 +100,12 @@ void populateStructure(Athletes athletes[], int numAthletes)
     for (int i = 0; i < numAthletes - 1; i++) {
         int minIndex = i;
         for (int j = i + 1; j < numAthletes; j++) {
-            if (athletes[j].feet < athletes[minIndex].feet) {
-                minIndex = j;
+            // makes sure the athlete has a score
+            if (athletes[j].score != "-1")
+            {
+                if (athletes[j].feet < athletes[minIndex].feet) {
+                    minIndex = j;
+                }
             }
         }
         if (minIndex != i) {
@@ -141,7 +140,7 @@ void output(Athletes arr[], int size)
         cout << "Thrower: " << arr[index].name << endl;
         cout << "School: " << arr[index].school << endl;
         cout << "Distance Thrown: " << arr[index].feet <<
-             " feet, " << arr[index].inches << " inches\n";
+            " feet, " << arr[index].inches << " inches\n";
         cout << endl;
     }
     cout << "There were " << index << " total throwers in the structure.\n";
