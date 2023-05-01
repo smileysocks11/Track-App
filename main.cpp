@@ -21,7 +21,7 @@ int displayMenu(int, bool);
 void scoreSort(Athletes[], int&);
 void throwTurns(Athletes[], int, int);
 void finals(Athletes[], int);
-void studLeaderboard(string*, string[], string[], int, int);
+void studLeaderboard(Athletes [], int);
 void viewAthletes(Athletes[], int, int);
 int getFlights(int);
 void addAthlete();

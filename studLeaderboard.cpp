@@ -5,7 +5,7 @@
 using namespace std;
 
 // Declare struct athleteInfo
-struct athleteInfo
+struct Athletes
 {
     string name, school, max, throw1, throw2, throw3, bestThrow;
     int flightNum;
@@ -18,7 +18,7 @@ struct athleteInfo
 # It sorts students' info in order of best distance thrown
 # It outputs the leaderboard to the user
 ############################*/
-void studLeaderboard(athleteInfo athletes[], int numAthletes)
+void studLeaderboard(Athletes athletes[], int numAthletes)
 {
     // Initialize variables
     int counter = 0;
