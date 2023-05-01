@@ -14,21 +14,9 @@ using namespace std;
 --------------------------------*/
 int getNumAthletes()
 {
-
-	// Create a directory on a windows machine
-	// with the path c:\track_data\
-
-	wstring filePath = L"C:\\track_data\\raw-athlete-database.txt"; // create a long string
-
-	LPCWSTR path = filePath.c_str();
-	if (CreateDirectory(path, NULL))
-	{
-		cout << "\nDirectory created: ";
-		wcout << filePath << endl;
-	}
-
 	// Opens nd validates the file
-	ifstream inFile(filePath);
+	ifstream inFile("C:\\track_data\\raw-athletes.txt");
+
 	if (!inFile)
 	{
 		cout << "File not found.\n";
