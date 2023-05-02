@@ -13,7 +13,7 @@ struct Athletes
 	string max;
 	string throw1, throw2, throw3;
 	string bestThrow;
-	int flightNum;
+	int flightNum = 0;
 };
 
 // function prototypes
@@ -23,7 +23,7 @@ void throwTurns(Athletes[], int, int);
 void finals(Athletes[], int);
 void studLeaderboard(Athletes [], int);
 void viewAthletes(Athletes[], int, int);
-int getFlights(int);
+int getFlights(int&);
 void addAthlete();
 int getNumAthletes();
 
@@ -32,15 +32,7 @@ int main()
 	// repository creator
 	wstring filePath = L"C:\\track_data";
 	LPCWSTR path = filePath.c_str();
-	if (CreateDirectory(path, NULL))
-	{
-		cout << "\nDirectory created: ";
-		wcout << filePath << endl;
-	}
-	else
-	{
-		cout << "Directory creation failed or directory already exists.";
-	}
+
 	// python
 	const char* argv[2];
 	argv[0] = "C:\\track_data\\webscrape.py";
@@ -68,7 +60,6 @@ int main()
 
 	// calls scoreSort to sort the athletes in the file
 	scoreSort(athletes, num_athletes);
-	// cout << athletes[0].name << endl;
 
 	// calls getFlights to get the number of flights from the user
 	flights = getFlights(num_athletes);
@@ -95,9 +86,9 @@ int main()
 		{
 			throwsArray = new string[num_athletes * 3 * flights];
 
-			for (int i =0; i < num_athletes; i++)
-			// runs the throws
-			throwTurns(athletes, flights, num_athletes);
+			for (int i = 0; i < num_athletes; i++)
+				// runs the throws
+				throwTurns(athletes, flights, num_athletes);
 		}
 		//view althletes
 		else if (choice == 3)
