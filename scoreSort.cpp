@@ -76,14 +76,13 @@ void populateStructure(Athletes athletes[], int totalAthletes)
             inches = stod(line.substr(pos3 + 1, pos2 - 1));
             athletes[numAthletes].feet = feet;
             athletes[numAthletes].inches = inches;
-            cout << "yeah\n";
+
         }
 
         // Add each to the structure
         athletes[numAthletes].name = name;
         athletes[numAthletes].score = score;
         athletes[numAthletes].school = school;
-        cout << athletes[numAthletes].name << endl;
         numAthletes++; // Increment the counter for the number of Athlete objects read
     }
 
