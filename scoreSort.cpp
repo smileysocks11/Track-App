@@ -25,16 +25,11 @@ void populateStructure(Athletes[], int);
 
 void scoreSort(Athletes athletes[], int& numAthletes)
 {
-    Athletes* athleteArr = new Athletes[numAthletes];
-
     // Populate and output the array of structs
     cout << "Populating the structure from a file...\n\n";
-    populateStructure(athleteArr, numAthletes);
+    populateStructure(athletes, numAthletes);
     cout << "\nOutputting Athletes from the structure...\n\n";
-    output(athleteArr, numAthletes);
-
-    // delete the dynamic array
-    delete[] athleteArr;
+    output(athletes, numAthletes);
 }
 
 void populateStructure(Athletes athletes[], int totalAthletes)
@@ -64,12 +59,12 @@ void populateStructure(Athletes athletes[], int totalAthletes)
         size_t pos2 = line.find_last_of("#"); // Find the position of the last hash symbol
         size_t pos3 = line.find_last_of('-');
 
-        // Check if pos1 and pos3 are not equal to string::npos before extracting the feet and inches values #PROBLEM HERE!!!
+        /* Check if pos1 and pos3 are not equal to string::npos before extracting the feet and inches values #PROBLEM HERE!!!
         if (pos1 == string::npos || pos3 == string::npos) {
             cerr << "Error: Invalid input format in input line " << numAthletes + 1 << endl;
             continue; // Skip the current line and move on to the next line
         }
-
+        */
         // Extract each substring from the input line and assign to the appropriate variable
         name = line.substr(0, pos1);
         score = line.substr(pos1 + 1, pos2 - pos1 - 1);
