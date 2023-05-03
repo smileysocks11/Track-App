@@ -5,8 +5,6 @@
 using namespace std;
 //Cloven Lo
 
-
-
 struct Athletes {
     string name;
     string score;
