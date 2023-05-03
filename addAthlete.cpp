@@ -14,8 +14,10 @@ using namespace std;
 ----------------------------------*/
 void addAthlete()
 {
+	cin.ignore();
+	
 	// Placeholder file
-	ofstream athleteFile("C:\\Users\\SSC00042\\Desktop\\raw-athlete-database.txt", ios_base::app);
+	ofstream athleteFile("C:\\track_data\\raw-athletes.txt", ios_base::app);
 
 	// Variables
 	string newFirstname; // User inputed first name
