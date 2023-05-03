@@ -62,7 +62,7 @@ int main()
 	scoreSort(athletes, num_athletes);
 
 	// calls getFlights to get the number of flights from the user
-	flights = getFlights(num_athletes);
+	flights = getFlights(athletes, num_athletes);
 
 	int choice = 0;
 
