@@ -23,7 +23,7 @@ void throwTurns(Athletes[], int, int);
 void finals(Athletes[], int);
 void studLeaderboard(Athletes [], int);
 void viewAthletes(Athletes[], int, int);
-int getFlights(int&);
+int getFlights(Athletes[], int&);
 void addAthlete();
 int getNumAthletes();
 

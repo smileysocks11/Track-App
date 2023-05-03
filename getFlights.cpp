@@ -2,7 +2,17 @@
 #include <string>
 using namespace std;
 
-int getFlights(int& num_athletes) {
+struct Athletes
+{
+	string name;
+	string school;
+	string max;
+	string throw1, throw2, throw3;
+	string bestThrow;
+	int flightNum = 0;
+};
+
+int getFlights(Athletes a[], int& num_athletes) {
     /*
      * gets the amount of flights for the meet
      * returns to main
@@ -12,5 +22,53 @@ int getFlights(int& num_athletes) {
     cout << "How any flights would you like in this meet? ";
     cin >> flights;
 
-    return flights;
+	int count = 0;
+	int div = num_athletes / flights;
+	int inFlights[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	if (div * flights != num_athletes)
+	{
+		for (int i = 0; i < flights; i++)
+		{
+			inFlights[i] += div;
+		}
+
+		int remainder = num_athletes - (div * flights);
+		while (remainder != 0)
+		{
+			inFlights[count] += 1; remainder -= 1;
+			count++;
+			if (count == flights)
+			{
+				count = 0;
+			}
+		}
+		count = 0;
+
+		for (int f = 0; f < 10; f++)
+		{
+			for (int i = 0; i < inFlights[f]; i++)
+			{
+				a[count].flightNum = f + 1;
+				count++;
+			}
+		}
+		count = 0;
+	}
+	else {
+		for (int i = 0; i < flights; i++)
+		{
+			inFlights[i] += div;
+		}
+		for (int f = 0; f < 10; f++)
+		{
+			for (int i = 0; i < inFlights[f]; i++)
+			{
+				a[count].flightNum = f + 1;
+				count++;
+			}
+		}
+		count = 0;
+	}
+
+	return flights;
 }
