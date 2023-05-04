@@ -13,6 +13,7 @@ struct Athletes {
     string throw1, throw2, throw3;
     string bestThrow;
     int flightNum = 0;
+    double bestDouble;
 };
 
 #endif
