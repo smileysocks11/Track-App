@@ -5,12 +5,6 @@
 #include "Athletes.h"
 using namespace std;
 
-// initialize structures
-
-// initialize prototypes
-void manualAdjust(Athletes allAthletes[], int totalAthletes, int totalFlights);
-void viewAthletes(Athletes athletes[], int flights, int numAthletes); // CH
-
 /*int main() >>>> USED FOR EXAMPLES
 {
 
@@ -41,12 +35,12 @@ void viewAthletes(Athletes athletes[], int flights, int numAthletes); // CH
 /*#########################################
 manualAdjust accepts a structure list, <- its
 size, and the total amount of flights.
-It's going to ask the user if they want to 
+It's going to ask the user if they want to
 move an athlete to another flight, if so,
 ask for the name and the flight and then change
 the athlete's flight number (flightNum).
 *///######################################
-void manualAdjust(Athletes allAthletes[], int totalAthletes, int totalFlights)
+void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 {
 
 	// initialize variables
@@ -57,9 +51,6 @@ void manualAdjust(Athletes allAthletes[], int totalAthletes, int totalFlights)
 	int athleteIndex; // athlete's index in the structure array
 	int flight; // the flight that the athlete is being moved to
 	char flightString[3]; // used for validating the flight number
-
-	// display the athlete's by calling viewAthlete
-	viewAthletes(allAthletes, totalAthletes, totalFlights);
 
 	// loop until the user no longer wants to move athletes
 	while (response == 'y')
@@ -93,7 +84,7 @@ void manualAdjust(Athletes allAthletes[], int totalAthletes, int totalFlights)
 			// if the name doesn't match any other names, tell the user
 			if (!found)
 				cout << endl << athlete << " was not found in any of the flights.\n";
-			
+
 		}
 
 		// loop until the user enters a valid flight number
