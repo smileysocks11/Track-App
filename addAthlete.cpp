@@ -3,8 +3,6 @@
 #include <fstream>
 using namespace std;
 
-// Noah McGinley
-
 /*--------------------------------
 # addAthlete accepts no arguments
 # It asks the user for the new athlete's
@@ -14,9 +12,8 @@ using namespace std;
 ----------------------------------*/
 void addAthlete()
 {
-	
 	// Placeholder file
-	ofstream athleteFile("C:\\track_data\\raw-athletes.txt", ios_base::app);
+	ofstream athleteFile("C:\\Users\\SSC00042\\Desktop\\raw-athlete-database.txt", ios_base::app);
 
 	// Variables
 	string newFirstname; // User inputed first name
@@ -72,7 +69,7 @@ void addAthlete()
 				cin >> ifMax;
 				while (!(tolower(ifMax) == 'y' || tolower(ifMax) == 'n'))
 				{
-					cout << R"(Invalid input. Enter either "y" or "n": )";
+					cout << R"(Invalid input. Enter either "y" or "n")";
 					cin >> ifMax;
 				}
 				cin.ignore();
@@ -164,7 +161,7 @@ void addAthlete()
 				cin >> confirm;
 				while (!(tolower(confirm) == 'y' || tolower(confirm) == 'n'))
 				{
-					cout << R"(Invalid input. Enter either "y" or "n": )";
+					cout << R"(Invalid input. Enter either "y" or "n")";
 					cin >> confirm;
 				}
 
@@ -183,7 +180,7 @@ void addAthlete()
 			cin >> addNewAthlete;
 			while (!(tolower(addNewAthlete) == 'y' || tolower(addNewAthlete) == 'n'))
 			{
-				cout << R"(Invalid input. Enter either "y" or "n": )";
+				cout << R"(Invalid input. Enter either "y" or "n")";
 				cin >> addNewAthlete;
 			}
 
