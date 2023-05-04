@@ -24,9 +24,9 @@ void viewAthletes(Athletes athletes[], int flights, int numAthletes)
         cout << "Flight " << flight + 1 << ": \n";
 
         // Output heading
-        cout << left << setw(25) << "Name"
-            << left << setw(25) << "School"
-            << left << setw(25) << "High Score" << endl;
+        cout << left << setw(30) << "Name"
+            << left << setw(30) << "School"
+            << left << setw(30) << "High Score" << endl;
 
         // Loop through all athletes in the array
         for (athlete = 0; athlete < numAthletes; athlete++)
@@ -35,9 +35,9 @@ void viewAthletes(Athletes athletes[], int flights, int numAthletes)
             if (athletes[athlete].flightNum == flight + 1)
             {
                 // Output information for the athlete
-                cout << left << setw(25) << athletes[athlete].name;
-                cout << left << setw(25) << athletes[athlete].school;
-                cout << left << setw(25) << athletes[athlete].score;
+                cout << left << setw(30) << athletes[athlete].name;
+                cout << left << setw(30) << athletes[athlete].school;
+                cout << left << setw(30) << athletes[athlete].score;
 
                 cout << endl;
             }
