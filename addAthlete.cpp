@@ -73,7 +73,7 @@ void addAthlete()
 				cin >> ifMax;
 				while (!(tolower(ifMax) == 'y' || tolower(ifMax) == 'n'))
 				{
-					cout << R"(Invalid input. Enter either "y" or "n")";
+					cout << R"(Invalid input. Enter either "y" or "n": )";
 					cin >> ifMax;
 				}
 				cin.ignore();
@@ -165,7 +165,7 @@ void addAthlete()
 				cin >> confirm;
 				while (!(tolower(confirm) == 'y' || tolower(confirm) == 'n'))
 				{
-					cout << R"(Invalid input. Enter either "y" or "n")";
+					cout << R"(Invalid input. Enter either "y" or "n": )";
 					cin >> confirm;
 				}
 
@@ -184,7 +184,7 @@ void addAthlete()
 			cin >> addNewAthlete;
 			while (!(tolower(addNewAthlete) == 'y' || tolower(addNewAthlete) == 'n'))
 			{
-				cout << R"(Invalid input. Enter either "y" or "n")";
+				cout << R"(Invalid input. Enter either "y" or "n": )";
 				cin >> addNewAthlete;
 			}
 
