@@ -14,10 +14,11 @@ void scoreSort(Athletes[], int&);
 void throwTurns(Athletes[], int, int);
 void finals(Athletes[], int);
 void studLeaderboard(Athletes[], int);
-void viewAthletes(Athletes[], int, int);
+void viewAthletes(Athletes[], int, int, bool);
 int getFlights(Athletes[], int&);
 void addAthlete();
 int getNumAthletes();
+void manualAdjust(Athletes[], int&, int&);
 
 int main()
 {
@@ -57,13 +58,16 @@ int main()
 
 	int choice = 0;
 
+	// option constants
+	int ADD = 1, THROW = 2, VIEW = 3, ADJUST = 4, QUIT = 5, MAX = 6, LB = 10, FINALS = 10;
+
 	do
 	{
 		choice = displayMenu(choice, throw_done);
 		cout << endl << endl;
 
 		// add athlete option
-		if (choice == 1)
+		if (choice == ADD)
 		{
 			// adds athlete
 			addAthlete();
@@ -73,21 +77,30 @@ int main()
 
 		}
 		// throw option
-		else if (choice == 2)
+		else if (choice == THROW)
 		{
 			for (int i = 0; i < num_athletes; i++)
 				// runs the throws
 				throwTurns(athletes, flights, num_athletes);
+			throw_done = 1;
+			ADD = 10, THROW = 10, VIEW = 1, ADJUST = 10, QUIT = 4, MAX = 5, LB = 2, FINALS = 3;
+
 		}
 		//view althletes
-		else if (choice == 3)
+		else if (choice == VIEW)
 		{
-			viewAthletes(athletes, flights, num_athletes);
+			viewAthletes(athletes, flights, num_athletes, throw_done);
+		}
+		// manual adjust
+		else if (choice == ADJUST)
+		{
+			viewAthletes(athletes, flights, num_athletes, throw_done);
+			manualAdjust(athletes, num_athletes, flights);
 		}
 
 
 
-	} while (choice != 6);
+	} while (choice != MAX);
 
 	// clears memory
 	delete[] athletes;
