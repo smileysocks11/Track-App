@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-int getFlights(Athletes a[], int& num_athletes) {
+int getFlights(Athletes a[], int num_athletes) {
     /*
      * gets the amount of flights for the meet
      * returns to main
