@@ -3,7 +3,9 @@
 #include <string>
 #include "Athletes.h"
 #include <iomanip>
+#include "Athletes.h"
 using namespace std;
+
 
 // Declare struct athleteInfo
 
@@ -38,7 +40,7 @@ void viewAthletes(Athletes athletes[], int flights, int numAthletes)
                 // Output information for the athlete
                 cout << left << setw(25) << athletes[athlete].name;
                 cout << left << setw(25) << athletes[athlete].school;
-                cout << left << setw(25) << athletes[athlete].max;
+                cout << left << setw(25) << athletes[athlete].score;
 
                 cout << endl;
             }
