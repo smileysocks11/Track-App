@@ -2,16 +2,10 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include "Athletes.h"
 using namespace std;
 
-// Declare struct athleteInfo
-struct Athletes
-{
-    string name, school;
-    string max, throw1, throw2, throw3, bestThrow;
-    int flightNum;
-    double bestDouble;
-};
+
 
 /*##########################
 # viewAthletes accepts an array of athletes, the num of flights,
@@ -43,7 +37,7 @@ void viewAthletes(Athletes athletes[], int flights, int numAthletes)
                 // Output information for the athlete
                 cout << left << setw(25) << athletes[athlete].name;
                 cout << left << setw(25) << athletes[athlete].school;
-                cout << left << setw(25) << athletes[athlete].max;
+                cout << left << setw(25) << athletes[athlete].score;
 
                 cout << endl;
             }
