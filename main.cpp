@@ -4,24 +4,16 @@
 #include <fstream>
 #include <python.h>
 #include <windows.h>
+#include "Athletes.h"
 using namespace std;
 
-struct Athletes
-{
-	string name;
-	string school;
-	string max;
-	string throw1, throw2, throw3;
-	string bestThrow;
-	int flightNum = 0;
-};
 
 // function prototypes
 int displayMenu(int, bool);
 void scoreSort(Athletes[], int&);
 void throwTurns(Athletes[], int, int);
 void finals(Athletes[], int);
-void studLeaderboard(Athletes [], int);
+void studLeaderboard(Athletes[], int);
 void viewAthletes(Athletes[], int, int);
 int getFlights(Athletes[], int&);
 void addAthlete();
@@ -50,7 +42,6 @@ int main()
 	int num_athletes;
 	int flights;
 	const int rounds = 3;
-	string* throwsArray = nullptr;
 	bool throw_done = 0;
 	string file_name;
 
@@ -84,8 +75,6 @@ int main()
 		// throw option
 		else if (choice == 2)
 		{
-			throwsArray = new string[num_athletes * 3 * flights];
-
 			for (int i = 0; i < num_athletes; i++)
 				// runs the throws
 				throwTurns(athletes, flights, num_athletes);
@@ -101,7 +90,7 @@ int main()
 	} while (choice != 6);
 
 	// clears memory
-	delete[] throwsArray;
 	delete[] athletes;
+
 	return 0;
 }
