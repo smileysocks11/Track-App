@@ -1,13 +1,10 @@
 // Carolyn Henderson
 #include <iostream>
 #include <string>
-#include "Athletes.h"
 #include <iomanip>
 #include "Athletes.h"
 using namespace std;
 
-
-// Declare struct athleteInfo
 
 
 /*##########################
@@ -15,7 +12,7 @@ using namespace std;
 # and the number of athletes in the array
 # It outputs all athletes in their separate flights
 ############################*/
-void viewAthletes(Athletes athletes[], int flights, int numAthletes)
+void viewAthletes(Athletes athletes[], int flights, int numAthletes, bool throw_done)
 {
     // Initialize variables
     int flight, athlete;
@@ -40,7 +37,11 @@ void viewAthletes(Athletes athletes[], int flights, int numAthletes)
                 // Output information for the athlete
                 cout << left << setw(25) << athletes[athlete].name;
                 cout << left << setw(25) << athletes[athlete].school;
-                cout << left << setw(25) << athletes[athlete].score;
+
+                if (throw_done == 0)
+                    cout << left << setw(25) << athletes[athlete].score;
+                else
+                    cout << left << setw(25) << athletes[athlete].bestThrow;
 
                 cout << endl;
             }
