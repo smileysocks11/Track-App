@@ -14,7 +14,6 @@ using namespace std;
 ----------------------------------*/
 void addAthlete()
 {
-	cin.ignore();
 	
 	// Placeholder file
 	ofstream athleteFile("C:\\track_data\\raw-athletes.txt", ios_base::app);
