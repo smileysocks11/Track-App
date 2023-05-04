@@ -51,7 +51,10 @@ void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 	int athleteIndex; // athlete's index in the structure array
 	int flight; // the flight that the athlete is being moved to
 	char flightString[3]; // used for validating the flight number
-
+	
+	// this change was made for the buffer
+	cin.ignore();
+	
 	// loop until the user no longer wants to move athletes
 	while (response == 'y')
 	{
