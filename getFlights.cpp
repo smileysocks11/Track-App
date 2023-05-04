@@ -4,17 +4,10 @@
 
 #include <iostream>
 #include <string>
+#include "Athletes.h"
 using namespace std;
 
-struct Athletes
-{
-	string name;
-	string school;
-	string max;
-	string throw1, throw2, throw3;
-	string bestThrow;
-	int flightNum = 0;
-};
+
 
 int getFlights(Athletes a[], int& num_athletes) {
     /*

@@ -2,15 +2,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Athletes.h"
 using namespace std;
 
 // Declare structure
-struct Athletes
-{
-	string name, school, max, throw1, throw2, throw3, bestThrow;
-	int flightNum;
-	double bestDouble;
-};
+
 
 /*############################
 # findBestAttempt accepts an array with all athletes

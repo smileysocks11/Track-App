@@ -4,20 +4,12 @@
 
 
 #include <iostream>
+#include "Athletes.h"
 
-struct athletes {
 
-    std::string name;
-    std::string school;
-    std::string max;
-    std::string throw1, throw2, throw3;
-    std::string bestThrow;
-    int flightNum;
-};
+bool athleteChecker(const Athletes& athlete);
 
-bool athleteChecker(const athletes& athlete);
-
-bool athleteChecker(const athletes& athlete) {
+bool athleteChecker(const Athletes& athlete) {
     /*
      * checks if the provided athlete has missed any throws
      * returns a bool finishedThrowing

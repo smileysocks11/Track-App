@@ -1,17 +1,12 @@
 // Carolyn Henderson
 #include <iostream>
 #include <string>
+#include "Athletes.h"
 #include <iomanip>
 using namespace std;
 
 // Declare struct athleteInfo
-struct Athletes
-{
-    string name, school;
-    string max, throw1, throw2, throw3, bestThrow;
-    int flightNum;
-    double bestDouble;
-};
+
 
 /*##########################
 # viewAthletes accepts an array of athletes, the num of flights,

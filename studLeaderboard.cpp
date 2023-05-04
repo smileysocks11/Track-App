@@ -2,15 +2,11 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include "Athletes.h"
 using namespace std;
 
 // Declare struct athleteInfo
-struct Athletes
-{
-    string name, school, max, throw1, throw2, throw3, bestThrow;
-    int flightNum;
-    double bestDouble;
-};
+
 
 /*##########################
 # studLeaderboard accepts an array of all athletes

@@ -2,18 +2,10 @@
 #include <string>
 #include <cctype>
 #include <limits>
+#include "Athletes.h"
 using namespace std;
 
 // initialize structures
-struct Athletes
-{
-	string name;
-	string school;
-	string max;
-	string throw1, throw2, throw3;
-	string bestThrow;
-	int flightNum;
-};
 
 // initialize prototypes
 void manualAdjust(Athletes allAthletes[], int totalAthletes, int totalFlights);
