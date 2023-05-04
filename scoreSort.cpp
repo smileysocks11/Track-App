@@ -1,79 +1,35 @@
 #include <iostream>
+#include "Athletes.h"
 #include <string>
 #include <fstream>
 #include <sstream>
+using namespace std;
 //Cloven Lo
 
-using namespace std;
-
-struct Athletes {
-    string name;
-    string score;
-    string school;
-    double feet = 0.0;
-    double inches = 0.0;
-};
-
 // Uses getNumAthletes
-int getNumAthletes();
-void output(Athletes [], int, string);
-void scoreSort(int);
-void populateStructure(Athletes [], int);
-
-// I USE getNumAthlets as numAthletes!!!
-// Just a test main to see if it would work
-// getNumAthletes must be declared in main.cpp
-
-/*int main() {  TEST MAIN!!! IGNORE THIS!!!
-    int numAthletes = getNumAthletes();
-    scoreSort(numAthletes);
-    return 0;
-} */
+void output(Athletes[], int);
+void scoreSort(Athletes [], int&);
+void populateStructure(Athletes[], int);
 
 // Uses numAthlete from getNumAthletes.cpp
 
-/*int getNumAthletes() {   THIS IS JUST A TEST, MY COMPUTER USE THIS, IGNORE THIS!!!
-    ifstream inFile("C:\\Users\\Administrator\\Desktop\\Programming\\Programming\\untitled2\\raw-athlete-database.txt");
-    if( !inFile)
-    {
-        cout << "File not found" << endl;
-        return 0;
-    }
-    else
-    {
-        string line;
-        int numAthletes = 0;
-        while (getline(inFile, line))
-        {
-            numAthletes++;
-        }
-        inFile.close();
-        return numAthletes;
-    }
 
-} */
-
-void scoreSort(int)
+void scoreSort(Athletes athletes[], int& numAthletes)
 {
-    
-    //THIS WILL ONLY OUTPUT AND CHANGE THE RAW-ATHLETES.TXT! WILL NOT BE OUTPUTTED FROM CONSOLE! WILL NOT MAKE A NEW FILE AS IT IS TO CHANGE THE ORIGINAL UNSORTED ATHLETES FILE
-    int numAthletes = getNumAthletes();
-    Athletes* athleteArr = new Athletes[numAthletes];
-
     // Populate and output the array of structs
-    populateStructure(athleteArr, numAthletes);
-    cout << "\nOutputting Athletes in Ascending order...\n\n";
-    output(athleteArr, numAthletes, "C:\\track_data\\raw-athletes.txt");
-
-    // delete the dynamic array
-    delete[] athleteArr;
+    cout << "Populating the structure from a file...\n\n";
+    populateStructure(athletes, numAthletes);
+    cout << "\nOutputting Athletes from the structure...\n\n";
+    output(athletes, numAthletes);
 }
 
-void populateStructure(Athletes athletes[], int numAthletes)
+void populateStructure(Athletes athletes[], int totalAthletes)
 {
+
     // Declare Variables
-    string line, name, school;
+    string name, school, score, line;
     double feet, inches;
+    int numAthletes = 0;
 
     // Open the input file
     ifstream inputFile("C:\\track_data\\raw-athletes.txt");
@@ -82,61 +38,60 @@ void populateStructure(Athletes athletes[], int numAthletes)
         return;
     }
 
-    int counter = 0;
-    while (getline(inputFile, line)) {
+    while (inputFile && numAthletes < totalAthletes) {
+        string line;
+        getline(inputFile, line);
         if (line.empty()) {
             continue; // Skip empty lines
         }
+        cout << line << endl;
 
         size_t pos1 = line.find("#"); // Find the position of the first hash symbol
         size_t pos2 = line.find_last_of("#"); // Find the position of the last hash symbol
         size_t pos3 = line.find_last_of('-');
 
-        // Check if pos1 and pos3 are not equal to string::npos before extracting the feet and inches values
+        // Check if pos1 and pos3 are not equal to string::npos before extracting the feet and inches values #PROBLEM HERE!!!
         if (pos1 == string::npos || pos3 == string::npos) {
-            cerr << "Error: Invalid input format in input line " << counter + 1 << endl;
+            cerr << "Error: Invalid input format in input line " << numAthletes + 1 << endl;
             continue; // Skip the current line and move on to the next line
         }
-
+        
         // Extract each substring from the input line and assign to the appropriate variable
         name = line.substr(0, pos1);
+        score = line.substr(pos1 + 1, pos2 - pos1 - 1);
         school = line.substr(pos2 + 1);
+        // converts to feet and inches if the athlete has a previous score
+        if (score != "-1")
+        {
+            feet = stod(line.substr(pos1 + 1, pos3 - 1));
+            inches = stod(line.substr(pos3 + 1, pos2 - 1));
+            athletes[numAthletes].feet = feet;
+            athletes[numAthletes].inches = inches;
 
-        // Check if the feet and inches substrings can be converted to valid double values
-        // using stringstream
-        stringstream ss(line.substr(pos1 + 1, pos3 - 1));
-        if (!(ss >> feet)) {
-            cerr << "Error: Invalid feet value in input line " << counter + 1 << endl;
-            continue; // Skip the current line and move on to the next line
         }
-
-        ss = stringstream(line.substr(pos3 + 1, pos2 - 1));
-        if (!(ss >> inches)) {
-            cerr << "Error: Invalid inches value in input line " << counter + 1 << endl;
-            continue; // Skip the current line and move on to the next line
-        }
-
 
         // Add each to the structure
-        athletes[counter].name = name;
-        athletes[counter].school = school;
-        athletes[counter].feet = feet;
-        athletes[counter].inches = inches;
-        counter++; // Increment the counter for the number of Athlete objects read
-
-        if (counter >= numAthletes) {
-            break; // Stop reading from the input file when the desired number of Athlete objects have been read
-        }
+        athletes[numAthletes].name = name;
+        athletes[numAthletes].score = score;
+        athletes[numAthletes].school = school;
+        numAthletes++; // Increment the counter for the number of Athlete objects read
+        cin.clear(); // clears the buffer
     }
 
     inputFile.close();
+    cout << "\nThere were " << numAthletes << " total lines read from the file.\n";
+    cout << "\n------------------------------";
 
     // Sort the athletes array by feet in ascending order using selection sort algorithm
-    for (int i = 0; i < counter - 1; i++) {
+    for (int i = 0; i < numAthletes - 1; i++) {
         int minIndex = i;
-        for (int j = i + 1; j < counter; j++) {
-            if (athletes[j].feet < athletes[minIndex].feet) {
-                minIndex = j;
+        for (int j = i + 1; j < numAthletes; j++) {
+            // makes sure the athlete has a score
+            if (athletes[j].score != "-1")
+            {
+                if (athletes[j].feet < athletes[minIndex].feet) {
+                    minIndex = j;
+                }
             }
         }
         if (minIndex != i) {
@@ -148,7 +103,7 @@ void populateStructure(Athletes athletes[], int numAthletes)
 }
 
 
-void output(Athletes arr[], int size, string outputFileName)
+void output(Athletes arr[], int size)
 {
     // Remove duplicates by comparing each athlete's name to the names of the other athletes
     for (int i = 0; i < size - 1; i++) {
@@ -158,35 +113,21 @@ void output(Athletes arr[], int size, string outputFileName)
                 for (int k = j; k < size - 1; k++) {
                     arr[k] = arr[k + 1];
                 }
-                size--;
-                j--;
+                size--; // Decrease the size of the array
+                j--; // Decrement j so it continues to check the current position again
             }
         }
     }
 
-    // Sort the athletes array by feet in ascending order using selection sort algorithm
-    for (int i = 0; i < size - 1; i++) {
-        int minIndex = i;
-        for (int j = i + 1; j < size; j++) {
-            if (arr[j].feet < arr[minIndex].feet) {
-                minIndex = j;
-            }
-        }
-        if (minIndex != i) {
-            Athletes temp = arr[i];
-            arr[i] = arr[minIndex];
-            arr[minIndex] = temp;
-        }
+    int index = 0;
+    for (index = 0; index < size; index++)
+    {
+        //Output the structure
+        cout << "Thrower: " << arr[index].name << endl;
+        cout << "School: " << arr[index].school << endl;
+        cout << "Distance Thrown: " << arr[index].feet <<
+            " feet, " << arr[index].inches << " inches\n";
+        cout << endl;
     }
-
-    // Open the output file
-    ofstream outputFile(outputFileName);
-
-    // Write the sorted data to the output file
-    for (int i = 0; i < size; i++) {
-        outputFile << arr[i].name << "#" << arr[i].feet << "-" << arr[i].inches << "#" << arr[i].school << "\n";
-    }
-
-    // Close the output file
-    outputFile.close();
+    cout << "There were " << index << " total throwers in the structure.\n";
 }
