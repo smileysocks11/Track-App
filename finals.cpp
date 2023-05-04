@@ -3,19 +3,11 @@
 #include <string>
 #include <cctype>
 #include <cmath>
+#include "Athletes.h"
 using namespace std;
 
 //Landon Marcotte
 
-struct Athletes
-{
-	string name;
-	string school;
-	string max;
-	string throw1, throw2, throw3;
-	string bestThrow;
-	int flightNum = 0;
-};
 
 void finals(Athletes a[], int athletes);
 

@@ -2,19 +2,12 @@
 #include <iomanip>
 #include <string>
 #include <cctype>
+#include "Athletes.h"
 using namespace std;
 
 //Landon Marcotte
 
-struct Athletes
-{
-	string name;
-	string school;
-	string max;
-	string throw1, throw2, throw3;
-	string bestThrow;
-	int flightNum = 0;
-};
+
 
 void throwTurns(Athletes a[], int flights, int athletes);
 
