@@ -55,13 +55,15 @@ void populateStructure(Athletes [], int);
 
 void scoreSort(int)
 {
+    
+    //THIS WILL ONLY OUTPUT AND CHANGE THE RAW-ATHLETES.TXT! WILL NOT BE OUTPUTTED FROM CONSOLE! WILL NOT MAKE A NEW FILE AS IT IS TO CHANGE THE ORIGINAL UNSORTED ATHLETES FILE
     int numAthletes = getNumAthletes();
     Athletes* athleteArr = new Athletes[numAthletes];
 
     // Populate and output the array of structs
     populateStructure(athleteArr, numAthletes);
     cout << "\nOutputting Athletes in Ascending order...\n\n";
-    output(athleteArr, numAthletes, "C:\\Users\\Administrator\\Desktop\\Programming\\Programming\\untitled2\\raw-athlete-database.txt");
+    output(athleteArr, numAthletes, "C:\\track_data\\raw-athletes.txt");
 
     // delete the dynamic array
     delete[] athleteArr;
@@ -74,7 +76,7 @@ void populateStructure(Athletes athletes[], int numAthletes)
     double feet, inches;
 
     // Open the input file
-    ifstream inputFile("C:\\Users\\Administrator\\Desktop\\Programming\\Programming\\untitled2\\raw-athlete-database.txt");
+    ifstream inputFile("C:\\track_data\\raw-athletes.txt");
     if (!inputFile) { // Check if the input file was opened successfully
         cerr << "Error opening file" << endl; // Print an error message if the file could not be opened
         return;
