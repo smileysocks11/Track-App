@@ -29,21 +29,21 @@ void findBestAttempt(Athletes athletes[], int& numAthletes)
 		// Determine which attempt the loop reached
 		switch (indThrowNum)
 		{
-		case 1: 
+		case 1:
 		{
 			// Set the attempt & individual throw number
 			attempt = athletes[athlete].throw1;
 			indThrowNum = 2;
 			break;
 		}
-		case 2: 
+		case 2:
 		{
 			// Set the attempt & individual throw number
 			attempt = athletes[athlete].throw2;
 			indThrowNum = 3;
 			break;
 		}
-		case 3: 
+		case 3:
 		{
 			// Set the attempt & individual throw number
 			attempt = athletes[athlete].throw3;
@@ -76,7 +76,7 @@ void findBestAttempt(Athletes athletes[], int& numAthletes)
 					inStr += character;
 			}
 		}
-		
+
 		// Determine inches
 		try
 		{
