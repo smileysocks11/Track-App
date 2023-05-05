@@ -32,6 +32,16 @@ int displayMenu(int choice, bool throw_done)
 
             // get the choice from the user
             cin >> choice;
+            if (cin.fail())
+            {
+                // tell the user off
+                cout << "\nPlease enter reasonable characters.\n";
+
+                // clear the stream
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
         } while (choice < 1 || choice > 5);
 
         // return to get back to the main file
@@ -57,7 +67,18 @@ int displayMenu(int choice, bool throw_done)
 
             // get the choice from the user
             cin >> choice;
-            cin.ignore();
+            if (cin.fail())
+            {
+                // tell the user off
+                cout << "\nPlease enter reasonable characters.\n";
+
+                // clear the stream
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                continue;
+            }
+            else
+                cin.ignore();
         } while (choice < 1 || choice > 4);
 
         // return to get back to the main file
