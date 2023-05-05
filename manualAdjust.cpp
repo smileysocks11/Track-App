@@ -45,6 +45,8 @@ void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 
 	// initialize variables
 	string athlete; // athlete's name
+	string fullName; // the first and last name of the athlete (used for formatting)
+	int index; // used for formatting (finds the index of the space)
 	int count;
 	bool found; // for whether the athlete's name is valid or not
 	char response = 'y'; // if the user would like to move another athlete
@@ -62,13 +64,32 @@ void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 		// reset / set variables
 		found = false;
 		flight = -1;
+		athlete = "";
 
 		// loop until a valid name is entered
 		while (!found)
 		{
 			// ask the user for the athletes name
 			cout << "\nEnter the name of the athlete you'd like to move: ";
-			getline(cin, athlete);
+			getline(cin, fullName);
+
+			//
+
+			// format the full name so it can be used to find in the structure
+			index = fullName.find(" ");
+
+			// set the athete name
+			athlete = fullName + "1";
+			
+			// loop in order to begin resorting the name
+			for (int i = fullName.length(), int o = 0; i <= index; i--)
+			{
+				athlete[o] = fullName[i];
+				o++;
+			}
+			for ()
+
+			//
 
 			// loop to check for that athlete in the flights
 			for (count = 0; count < totalAthletes; count++)
