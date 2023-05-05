@@ -14,7 +14,7 @@ using namespace std;
 # It finds the best attempt for each student, and
 # adds it to the array
 ##############################*/
-void findBestAttempt(Athletes athletes[], int numAthletes)
+void findBestAttempt(Athletes athletes[], int& numAthletes)
 {
 	// Initialize variables and constants
 	const int ROUNDS = 3;
