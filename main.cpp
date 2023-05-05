@@ -15,7 +15,7 @@ void throwTurns(Athletes[], int, int);
 void finals(Athletes[], int);
 void studLeaderboard(Athletes[], int&);
 void viewAthletes(Athletes[], int, int, bool);
-int getFlights(Athletes[], int&);
+int getFlights(Athletes[], int);
 void addAthlete();
 int getNumAthletes();
 void manualAdjust(Athletes[], int&, int&);
@@ -29,15 +29,15 @@ int main()
 	LPCWSTR path = filePath.c_str();
 
 	// python
-	const char* argv[2];
-	argv[0] = "C:\\track_data\\webscrape.py";
+	// const char* argv[2];
+	// argv[0] = "C:\\track_data\\webscrape.py";
 
-	Py_Initialize();
+	/*Py_Initialize();
 	PyObject* obj = Py_BuildValue("s", argv[0]);
 	FILE* file = _Py_fopen_obj(obj, "r");
 	if (file)
 		PyRun_SimpleFile(file, argv[0]);
-	Py_Finalize();
+	Py_Finalize(); */
 
 
 	// declares variables
