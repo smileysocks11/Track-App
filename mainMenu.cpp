@@ -86,4 +86,6 @@ int displayMenu(int choice, bool throw_done)
 
     }
 
+    return choice;
+    
 }
