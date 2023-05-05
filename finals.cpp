@@ -82,6 +82,7 @@ void finals(Athletes a[], int athletes)
 	count = 0;
 	for (int r = 0; r < 3; r++)
 	{
+		count = 0;
 		for (int i = 0; i < 8; i++)
 		{
 			//might need to make an integer
@@ -172,22 +173,20 @@ void finals(Athletes a[], int athletes)
 				//format for enter the numbers into the array 105-2.5
 				if (r == 0)
 				{
-					a[count].throw1 = tossFt + "-" + tossIn + "." + tossQtr;
+					a[index].throw1 = tossFt + "-" + tossIn + "." + tossQtr;
 				}
 				if (r == 1)
 				{
-					a[count].throw2 = tossFt + "-" + tossIn + "." + tossQtr;
+					a[index].throw2 = tossFt + "-" + tossIn + "." + tossQtr;
 				}
 				if (r == 2)
 				{
-					a[count].throw3 = tossFt + "-" + tossIn + "." + tossQtr;
+					a[index].throw3 = tossFt + "-" + tossIn + "." + tossQtr;
 				}
-				cout << a[count].throw1 << endl;
 			}
 			tossFt.clear();
 			tossIn.clear();
 			tossQtr.clear();
-			count++;
 		}
 	}
 }
