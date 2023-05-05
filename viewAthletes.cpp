@@ -24,9 +24,10 @@ void viewAthletes(Athletes athletes[], int flights, int numAthletes, bool throw_
         cout << "Flight " << flight + 1 << ": \n";
 
         // Output heading
-        cout << left << setw(25) << "Name"
-            << left << setw(25) << "School"
-            << left << setw(25) << "High Score" << endl;
+        cout << left << setw(35) << "Name"
+            << left << setw(35) << "School"
+            << left << setw(35) << "High Score" << endl;
+        cout << "----------------------------------------------------\n";
 
         // Loop through all athletes in the array
         for (athlete = 0; athlete < numAthletes; athlete++)
@@ -35,13 +36,13 @@ void viewAthletes(Athletes athletes[], int flights, int numAthletes, bool throw_
             if (athletes[athlete].flightNum == flight + 1)
             {
                 // Output information for the athlete
-                cout << left << setw(25) << athletes[athlete].name;
-                cout << left << setw(25) << athletes[athlete].school;
+                cout << left << setw(35) << athletes[athlete].name;
+                cout << left << setw(35) << athletes[athlete].school;
 
                 if (throw_done == 0)
-                    cout << left << setw(25) << athletes[athlete].score;
+                    cout << left << setw(35) << athletes[athlete].score;
                 else
-                    cout << left << setw(25) << athletes[athlete].bestThrow;
+                    cout << left << setw(35) << athletes[athlete].bestThrow;
 
                 cout << endl;
             }
