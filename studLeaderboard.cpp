@@ -14,7 +14,7 @@ using namespace std;
 # It sorts students' info in order of best distance thrown
 # It outputs the leaderboard to the user
 ############################*/
-void studLeaderboard(Athletes athletes[], int numAthletes)
+void studLeaderboard(Athletes athletes[], int& numAthletes)
 {
     // Initialize variables
     int counter = 0;
