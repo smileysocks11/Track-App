@@ -82,12 +82,17 @@ void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 			athlete = fullName + "1";
 			
 			// loop in order to begin resorting the name
-			for (int i = fullName.length(), int o = 0; i <= index; i--)
+			for (int i = 0, o = index + 1; o == fullName.length(); o++)
 			{
-				athlete[o] = fullName[i];
-				o++;
+				athlete[i] = fullName[o];
+				i++;
 			}
-			for ()
+			athlete[index - 1] = ',';
+			for (int i = index + 1, o = 0; o == index; o++)
+			{
+				athlete[i] = fullName[o];
+				i++;
+			}
 
 			//
 
