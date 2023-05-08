@@ -9,22 +9,6 @@
  * uses the athletes array
  * and calls athleteChecker to check each athlete's struct
 */
-int main() {
-    
-    int athlete_num = 0;
-    int num_athletes = 36;
-    while (num_athletes != athlete_num) {
-        
-        Athletes athlete = athletes[athlete_num];
-        
-        isFinished = athleteChecker(athlete);
-        
-        std::cout << isFinished;
-        
-        athlete_num += 1;
-    }
-    
-}
 
 bool athleteChecker(const Athletes& athlete) {
     /*
@@ -47,6 +31,7 @@ bool athleteChecker(const Athletes& athlete) {
         finishedThrowing = false;
 
         std::cout << athlete.name << " has missed " << missedThrows << " throw.\n";
+        
     }
 
     return finishedThrowing;
