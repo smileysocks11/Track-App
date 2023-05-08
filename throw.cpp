@@ -90,7 +90,7 @@ void throwTurns(Athletes a[], int flights, int athletes)
 			count = amount;
 			for (int i = 0; i < inFlights[f]; i++)
 			{
-
+				cout << "Round " << r << endl << endl;
 				cout << "\nIs " << a[count].name << " here to throw?\n(y/n)>";
 				cin >> choice;
 				while (choice != 'n' && choice != 'y')
