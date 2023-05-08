@@ -67,13 +67,7 @@ void populateStructure(Athletes athletes[], int totalAthletes)
             inches = stod(line.substr(pos3 + 1, pos2 - 1));
             athletes[numAthletes].feet = feet;
             athletes[numAthletes].inches = inches;
-        }
-        else
-        {
-            feet = 0;
-            inches = 0;
-            athletes[numAthletes].feet = 0;
-            athletes[numAthletes].inches = 0;
+
         }
 
         // Add each to the structure
@@ -97,6 +91,11 @@ void populateStructure(Athletes athletes[], int totalAthletes)
             {
                 if (athletes[j].feet < athletes[minIndex].feet) {
                     minIndex = j;
+                }
+                else if (athletes[j].feet == athletes[minIndex].feet)
+                {
+                    if (athletes[j].inches < athletes[minIndex].inches)
+                        minIndex = j;
                 }
             }
         }
