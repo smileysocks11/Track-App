@@ -45,6 +45,8 @@ void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 
 	// initialize variables
 	string athlete; // athlete's name
+	string fullName; // the first and last name of the athlete (used for formatting)
+	int index; // used for formatting (finds the index of the space)
 	int count;
 	bool found; // for whether the athlete's name is valid or not
 	char response = 'y'; // if the user would like to move another athlete
@@ -62,20 +64,48 @@ void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 		// reset / set variables
 		found = false;
 		flight = -1;
+		athlete = "";
 
 		// loop until a valid name is entered
 		while (!found)
 		{
 			// ask the user for the athletes name
-			cout << "\nEnter the name of the athlete you'd like to move: ";
-			getline(cin, athlete);
+			cout << "\nEnter the name of the athlete you'd like to move (FirstName LastName): ";
+			getline(cin, fullName);
+
+			int fullNameLength = (int)fullName.length() + 2;  // + 2 for '\0' and ','
+			char* newString = new char[fullNameLength];
+
+			int spaceIndex = (int)fullName.find(" "); // (int) to be interpretted as integer
+
+			int j = 0;
+			for (int i = spaceIndex + 1; i < fullNameLength - 2 && j < fullNameLength; i++)
+			{
+				newString[j++] = fullName[i];
+			}
+
+			if (j < fullNameLength)
+				newString[j++] = ',';
+			if (j < fullNameLength)
+				newString[j++] = ' ';
+
+			for (int i = 0; i < spaceIndex && i < fullNameLength - 1; i++)
+			{
+				newString[j++] = fullName[i];
+			}
+
+			if (j <= fullNameLength - 1)
+				newString[j] = '\0'; // manually put in the null terminator
+
+			// convert the character string array to a std::string
+			string newName(newString);
 
 			// loop to check for that athlete in the flights
 			for (count = 0; count < totalAthletes; count++)
 			{
 
 				// compare the names 
-				if (athlete == allAthletes[count].name)
+				if (newName == allAthletes[count].name)
 				{
 					found = true;
 					athleteIndex = count;
@@ -86,7 +116,9 @@ void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 
 			// if the name doesn't match any other names, tell the user
 			if (!found)
-				cout << endl << athlete << " was not found in any of the flights.\n";
+				cout << endl << fullName << " was not found in any of the flights.\n";
+
+			delete[] newString;// free up the memory
 
 		}
 
@@ -94,7 +126,7 @@ void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 		while (flight < 1 || flight > totalFlights)
 		{
 			// ask the user for a flight number
-			cout << "\nEnter the flight number that you'd like to move " << athlete << " to: ";
+			cout << "\nEnter the flight number that you'd like to move " << fullName << " to: ";
 			cin.getline(flightString, 3, '\n');
 
 			if (cin.fail())
@@ -126,7 +158,7 @@ void manualAdjust(Athletes allAthletes[], int& totalAthletes, int& totalFlights)
 
 		// after both requirements are met, switch the user to another flight
 		allAthletes[athleteIndex].flightNum = flight;
-		cout << "\n" << athlete << " was successfully moved to flight " << flight << endl;
+		cout << "\n" << fullName << " was successfully moved to flight " << flight << endl;
 
 		// ask the user if they would like to move another athlete
 		cout << "\nWould you like to move another athlete? (y/n): ";

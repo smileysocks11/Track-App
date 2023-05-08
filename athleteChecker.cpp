@@ -2,12 +2,13 @@
  * brighton hilyard's file
 */
 
-
 #include <iostream>
 #include "Athletes.h"
 
-
-bool athleteChecker(const Athletes& athlete);
+/*
+ * uses the athletes array
+ * and calls athleteChecker to check each athlete's struct
+*/
 
 bool athleteChecker(const Athletes& athlete) {
     /*
@@ -30,6 +31,7 @@ bool athleteChecker(const Athletes& athlete) {
         finishedThrowing = false;
 
         std::cout << athlete.name << " has missed " << missedThrows << " throw.\n";
+        
     }
 
     return finishedThrowing;

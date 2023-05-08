@@ -3,6 +3,8 @@
 #include <fstream>
 using namespace std;
 
+// Noah McGinley
+
 /*--------------------------------
 # addAthlete accepts no arguments
 # It asks the user for the new athlete's
