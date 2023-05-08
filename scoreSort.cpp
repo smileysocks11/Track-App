@@ -8,7 +8,7 @@ using namespace std;
 
 // Uses getNumAthletes
 void output(Athletes[], int);
-void scoreSort(Athletes [], int&);
+void scoreSort(Athletes[], int&);
 void populateStructure(Athletes[], int);
 
 // Uses numAthlete from getNumAthletes.cpp
@@ -55,7 +55,7 @@ void populateStructure(Athletes athletes[], int totalAthletes)
             cerr << "Error: Invalid input format in input line " << numAthletes + 1 << endl;
             continue; // Skip the current line and move on to the next line
         }
-        
+
         // Extract each substring from the input line and assign to the appropriate variable
         name = line.substr(0, pos1);
         score = line.substr(pos1 + 1, pos2 - pos1 - 1);
@@ -67,7 +67,13 @@ void populateStructure(Athletes athletes[], int totalAthletes)
             inches = stod(line.substr(pos3 + 1, pos2 - 1));
             athletes[numAthletes].feet = feet;
             athletes[numAthletes].inches = inches;
-
+        }
+        else
+        {
+            feet = 0;
+            inches = 0;
+            athletes[numAthletes].feet = 0;
+            athletes[numAthletes].inches = 0;
         }
 
         // Add each to the structure
@@ -85,19 +91,18 @@ void populateStructure(Athletes athletes[], int totalAthletes)
     // Sort the athletes array by feet in ascending order using selection sort algorithm
     for (int i = 0; i < numAthletes - 1; i++) {
         int minIndex = i;
-        for (int j = i + 1; j < numAthletes; j++) {
-            // makes sure the athlete has a score
-            if (athletes[j].score != "-1")
+        for (int j = i + 1; j < numAthletes; j++) 
+        {
+            if (athletes[j].feet < athletes[minIndex].feet) 
             {
-                if (athletes[j].feet < athletes[minIndex].feet) {
-                    minIndex = j;
-                }
-                else if (athletes[j].feet == athletes[minIndex].feet)
-                {
-                    if (athletes[j].inches < athletes[minIndex].inches)
-                        minIndex = j;
-                }
+                minIndex = j;
             }
+            else if (athletes[j].feet == athletes[minIndex].feet)
+            {
+                if (athletes[j].inches < athletes[minIndex].inches)
+                    minIndex = j;
+            }
+
         }
         if (minIndex != i) {
             Athletes temp = athletes[i];
