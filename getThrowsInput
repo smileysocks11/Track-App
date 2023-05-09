@@ -19,9 +19,11 @@ int getThrowInput()
 		{
 			throws = stoi(input);
 
-			// Make sure flights is greater than 0
+			// Make sure flights is greater than 0 and less than 5
 			if (throws <= 0)
 				throw invalid_argument("\nError: Enter a value greater than 0\n");
+			if (throws > 4)
+				throw invalid_argument("\nError: Enter a value less than or equal to 4\n");
 			else
 				throwsGood = true;
 		}
