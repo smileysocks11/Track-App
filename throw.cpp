@@ -19,7 +19,7 @@ void throwTurns(Athletes a[], int flights, int athletes, int rounds)
 	A failed attempt is a DQ in the stystem
 	fill the first flight with more people than tht others if there are left*/
 
-
+	
 
 	int div = athletes / flights;
 	char choice;
@@ -32,25 +32,28 @@ void throwTurns(Athletes a[], int flights, int athletes, int rounds)
 
 	int count = 0, amount = 0;
 	int inFlights[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-	
+
 	for (size_t i = 0; i < flights; i++)
 	{
-		while (a->flightNum == count)
+		for (int index = 0; index < athletes; index++)
 		{
-			inFlights[count]++;
+			if (a[index].flightNum == i + 1)
+				inFlights[i]++;
 		}
 	}
-	count = 0;
-
+	
 	for (int f = 0; f < flights; f++)
 	{
 		for (int r = 0; r < rounds; r++)
 		{
 			count = amount;
+
+			// Output header
+			cout << "\n------------------------------\nFlight " << f + 1 << ", Round "
+				<< r + 1 << "\n------------------------------\n";
+
 			for (int i = 0; i < inFlights[f]; i++)
 			{
-				cout << "Flight " << f + 1 << endl << endl;
-				cout << "Round " << r + 1 << endl << endl;
 				cout << "\nIs " << a[count].name << " here to throw?\n(y/n)>";
 				cin >> choice;
 				while (choice != 'n' && choice != 'y')
@@ -110,7 +113,7 @@ void throwTurns(Athletes a[], int flights, int athletes, int rounds)
 						}
 						if (i == 2)
 						{
-							measure = "quater inches";
+							measure = "quarter inches";
 							cout << "What is the distance for the athlete's throw for " << measure << "?\n>";
 
 							do
@@ -157,4 +160,3 @@ void throwTurns(Athletes a[], int flights, int athletes, int rounds)
 		amount += inFlights[f];
 	}
 }
-
