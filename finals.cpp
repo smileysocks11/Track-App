@@ -88,7 +88,7 @@ void finals(Athletes a[], int athletes)
 			//might need to make an integer
 			int index = at[i];
 			cout << index << endl;
-			cout << "Round " << r << endl << endl;
+			cout << "Round " << r + 1 << endl << endl;
 			cout << "\nIs " << a[index].name << " here to throw?\n(y/n)>";
 			cin >> choice;
 			while (choice != 'n' && choice != 'y')
