@@ -20,88 +20,87 @@ void findBestAttempt(Athletes athletes[], int& numAthletes, int throws)
 	double reformAttempt, bestThrow = 0, inches = 0;
 	string attempt, character, ftStr, inStr, bestStr;
 	bool hitDash = false;
-	int throwNum, indThrowNum = 1, athlete = 0;
+	int throwNum, athlete;
 
 	// Reformat throws to be doubles
-	for (throwNum = 0; throwNum < (numAthletes * throws); throwNum++)
+	for (athlete = 0; athlete < numAthletes; athlete++)
 	{
-		// Determine which attempt the loop reached
-		switch (indThrowNum)
+		for (throwNum = 0; throwNum < throws; throwNum++)
 		{
-		case 1:
-		{
-			// Set the attempt & individual throw number
-			attempt = athletes[athlete].throw1;
-			indThrowNum = 2;
-			break;
-		}
-		case 2:
-		{
-			// Set the attempt & individual throw number
-			attempt = athletes[athlete].throw2;
-			indThrowNum = 3;
-			break;
-		}
-		case 3:
-		{
-			// Set the attempt & individual throw number
-			attempt = athletes[athlete].throw3;
-			indThrowNum = 1;
-		}
-		case 4:
-		{
-			// Set the attempt & individual throw number
-			attempt = athletes[athlete].throw4;
-			indThrowNum = 1;
-
-			// Put the best throw in the structure array and reset
-			athletes[athlete].bestThrow = bestStr;
-			athletes[athlete].bestDouble = bestThrow;
-			bestThrow = 0;
-			athlete++;
-			break;
-		}
-		default: cout << "Error: Invalid throw num\n\n";
-		}
-
-		// Loop through the characters in the throw
-		for (auto character : attempt)
-		{
-			// Determine if dash has been hit yet
-			if (character == '-')
-				hitDash = true;
-
-			// Num of feet is the num before the dash
-			if (!hitDash)
-				ftStr += character;
-			else
+			// Determine which attempt the loop reached
+			switch (throwNum)
 			{
-				// If current character is not dash, add to inches
-				if (character != '-')
-					inStr += character;
+			case 0:
+			{
+				// Set the attempt & individual throw number
+				attempt = athletes[athlete].throw1;
+				break;
 			}
+			case 1:
+			{
+				// Set the attempt & individual throw number
+				attempt = athletes[athlete].throw2;
+				break;
+			}
+			case 2:
+			{
+				// Set the attempt & individual throw number
+				attempt = athletes[athlete].throw3;
+				break;
+			}
+			case 3:
+			{
+				// Set the attempt & individual throw number
+				attempt = athletes[athlete].throw4;
+				break;
+			}
+			default: cout << "Error: Invalid throw num\n\n";
+			}
+
+			// Loop through the characters in the throw
+			for (auto character : attempt)
+			{
+				// Determine if dash has been hit yet
+				if (character == '-')
+					hitDash = true;
+
+				// Num of feet is the num before the dash
+				if (!hitDash)
+					ftStr += character;
+				else
+				{
+					// If current character is not dash, add to inches
+					if (character != '-')
+						inStr += character;
+				}
+			}
+
+			// Determine inches
+			try
+			{
+				inches = (stod(ftStr) * 12) + stod(inStr);
+			}
+			catch (exception)
+			{
+				cout << "Error: Can't convert to double\n";
+			}
+
+			// Determine if the attempt is best for the athlete so far
+			if (inches > bestThrow)
+			{
+				bestThrow = inches;
+				bestStr = attempt;
+			}
+
+			// Reset variables
+			inStr = ftStr = "";
+			inches = 0;
+			hitDash = false;
 		}
 
-		// Determine inches
-		try
-		{
-			inches = (stod(ftStr) * 12) + stod(inStr);
-		}
-		catch (exception)
-		{
-			cout << "Error: Can't convert to double\n";
-		}
-
-		// Determine if the attempt is best for the athlete so far
-		if (inches > bestThrow)
-		{
-			bestThrow = inches;
-			bestStr = attempt;
-		}
-
-		// Reset variables
-		inStr = ftStr = "";
-		inches = 0;
-		hitDash = false;
+		// Set the athlete's best attempt
+		athletes[athlete].bestThrow = bestStr;
+		athletes[athlete].bestDouble = bestThrow;
+		bestThrow = 0;
 	}
 }
