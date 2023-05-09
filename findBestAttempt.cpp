@@ -18,7 +18,7 @@ void findBestAttempt(Athletes athletes[], int& numAthletes, int throws)
 {
 	// Initialize variables and constants
 	double reformAttempt, bestThrow = 0, inches = 0;
-	string attempt, character, ftStr, inStr, bestStr;
+	string attempt, character, ftStr, inStr, bestStr = "0-0.0";
 	bool hitDash = false;
 	int throwNum, athlete;
 
@@ -56,6 +56,10 @@ void findBestAttempt(Athletes athletes[], int& numAthletes, int throws)
 			}
 			default: cout << "Error: Invalid throw num\n\n";
 			}
+
+			// Skip the attempt if the throw is -1
+			if (attempt == "-1")
+				continue;
 
 			// Loop through the characters in the throw
 			for (auto character : attempt)
@@ -101,6 +105,7 @@ void findBestAttempt(Athletes athletes[], int& numAthletes, int throws)
 		// Set the athlete's best attempt
 		athletes[athlete].bestThrow = bestStr;
 		athletes[athlete].bestDouble = bestThrow;
+		bestStr = "0-0.0";
 		bestThrow = 0;
 	}
 }
