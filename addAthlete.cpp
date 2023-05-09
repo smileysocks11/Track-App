@@ -5,6 +5,8 @@ using namespace std;
 
 // Noah McGinley
 
+bool validateString(string);
+
 /*--------------------------------
 # addAthlete accepts no arguments
 # It asks the user for the new athlete's
@@ -42,7 +44,7 @@ void addAthlete()
 	else
 	{
 
-		while (tolower(addNewAthlete) == 'y')
+		while (tolower(addNewAthlete) == 'y') // repeats as long as user wants to continue adding athletes
 		{
 			confirm = 'n';
 
@@ -80,70 +82,107 @@ void addAthlete()
 
 				if (ifMax == 'y')
 				{
-
 					// Receives input for feet
 					cout << "Enter their max.\n";
 					cout << "For feet: ";
-					do
-					{
-						try
-						{
-							getline(cin, feet);
-							inputCheck = stoi(feet);
-							inputCheck = 0;
-							check = true;
-						}
-						catch (const std::exception&)
-						{
-							cout << "Invalid input. Please enter a numeric value: ";
-							check = false;
-							feet.clear();
-						}
-					} while (check == false);
-					check = true;
+					getline(cin, feet);
 
+					bool charValid = validateString(feet); // Validates that the string only contains digits
+
+					while (!charValid || feet.empty())
+					{
+						cout << "Invalid input. Please enter a positive numeric value: ";
+						getline(cin, feet);
+						charValid = validateString(feet);
+					}
+
+					// -------------------------------
 					// Receives input for inches
 					cout << "For inches: ";
-					do
-					{
-						try
-						{
-							getline(cin, inches);
-							inputCheck = stoi(inches);
-							inputCheck = 0;
-							check = true;
-						}
-						catch (const std::exception&)
-						{
-							cout << "Invalid input. Please enter a numeric value: ";
-							check = false;
-							inches.clear();
-						}
-					} while (check == false);
-					check = true;
+					getline(cin, inches);
 
-					// Receives input for quarter inches
-					cout << "For quarter inches: ";
-					do
+					charValid = validateString(inches); // Validates that the string only contains digits
+					bool numValid = false; // Validates if the value is within the correct range
+
+					try
 					{
+						if (stoi(inches) <= 11)
+						{
+							numValid = true;
+						}
+						else
+						{
+							numValid = false;
+						}
+					}
+					catch (exception) {};
+
+					while (!charValid || !numValid)
+					{
+						cout << "Invalid input. Please enter a positive numeric value less than or equal to 11: ";
+						getline(cin, inches);
+						charValid = validateString(inches); // Validates that the string only contains digits
+
 						try
 						{
-							getline(cin, qtrInches);
-							inputCheck = stoi(qtrInches);
-							inputCheck = 0;
-							check = true;
+							if (stoi(inches) <= 11)
+							{
+								numValid = true;
+							}
+							else
+							{
+								numValid = false;
+							}
 						}
-						catch (const std::exception&)
+						catch (exception) {};
+					}
+
+					// ---------------------------------
+					// Receives input for quarter inches
+					cout << "For qtrInches: ";
+					getline(cin, qtrInches);
+
+					charValid = validateString(qtrInches);
+					numValid = false;
+
+					try
+					{
+						if (stoi(qtrInches) <= 3)
 						{
-							cout << "Invalid input. Please enter a numeric value: ";
-							check = false;
-							qtrInches.clear();
+							numValid = true;
 						}
-					} while (check == false);
-					check = true;
+						else
+						{
+							numValid = false;
+						}
+					}
+					catch (exception) {};
+
+					while (!charValid || !numValid)
+					{
+						cout << "Invalid input. Please enter a positive numeric value less than or equal to 3: ";
+						getline(cin, qtrInches);
+						charValid = validateString(qtrInches);
+
+						try
+						{
+							if (stoi(qtrInches) <= 3)
+							{
+								numValid = true;
+							}
+							else
+							{
+								numValid = false;
+							}
+						}
+						catch (exception) {};
+					}
+
+					// ------------------------------------
 
 					newMax = feet + "-" + inches + "." + qtrInches;
 					displayNewMax = newMax;
+
 				}
 				else
 				{
@@ -202,3 +241,12 @@ void addAthlete()
 	athleteFile.close();
 }
 
+
+/*-------------------------------
+# accepts a string as input
+# It checks to see if the string only contains digits
+---------------------------------*/
+bool validateString(string input)
+{
+	return input.find_first_not_of("0123456789") == string::npos;
+}
