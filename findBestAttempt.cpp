@@ -14,17 +14,16 @@ using namespace std;
 # It finds the best attempt for each student, and
 # adds it to the array
 ##############################*/
-void findBestAttempt(Athletes athletes[], int& numAthletes)
+void findBestAttempt(Athletes athletes[], int& numAthletes, int throws)
 {
 	// Initialize variables and constants
-	const int ROUNDS = 3;
 	double reformAttempt, bestThrow = 0, inches = 0;
 	string attempt, character, ftStr, inStr, bestStr;
 	bool hitDash = false;
 	int throwNum, indThrowNum = 1, athlete = 0;
 
 	// Reformat throws to be doubles
-	for (throwNum = 0; throwNum < (numAthletes * 3); throwNum++)
+	for (throwNum = 0; throwNum < (numAthletes * throws); throwNum++)
 	{
 		// Determine which attempt the loop reached
 		switch (indThrowNum)
@@ -47,6 +46,12 @@ void findBestAttempt(Athletes athletes[], int& numAthletes)
 		{
 			// Set the attempt & individual throw number
 			attempt = athletes[athlete].throw3;
+			indThrowNum = 1;
+		}
+		case 4:
+		{
+			// Set the attempt & individual throw number
+			attempt = athletes[athlete].throw4;
 			indThrowNum = 1;
 
 			// Put the best throw in the structure array and reset
