@@ -149,7 +149,31 @@ void throwTurns(Athletes a[], int flights, int athletes, int rounds)
 					{
 						a[count].throw3 = tossFt + "-" + tossIn + "." + tossQtr;
 					}
+					if (r == 3)
+					{
+						a[count].throw4 = tossFt + "-" + tossIn + "." + tossQtr;
+					}
 					cout << a[count].throw1 << endl;
+				}
+				// Put empty values into throw if athlete not here
+				else if (choice == 'n')
+				{
+					if (r == 0)
+					{
+						a[count].throw1 = "-1";
+					}
+					if (r == 1)
+					{
+						a[count].throw2 = "-1";
+					}
+					if (r == 2)
+					{
+						a[count].throw3 = "-1";
+					}
+					if (r == 3)
+					{
+						a[count].throw4 = "-1";
+					}
 				}
 				tossFt.clear();
 				tossIn.clear();
