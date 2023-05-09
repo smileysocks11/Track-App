@@ -9,9 +9,9 @@ using namespace std;
 
 
 
-void throwTurns(Athletes a[], int flights, int athletes);
+void throwTurns(Athletes a[], int flights, int athletes, int rounds);
 
-void throwTurns(Athletes a[], int flights, int athletes)
+void throwTurns(Athletes a[], int flights, int athletes, int rounds)
 {
 	/*use the loop to loop through the array until all the athletes from a single flight has
 	thrown and moves on to the next athletes in the structure bassed off their throw
@@ -32,65 +32,25 @@ void throwTurns(Athletes a[], int flights, int athletes)
 
 	int count = 0, amount = 0;
 	int inFlights[10] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-	if (div * flights != athletes)
+	
+	for (size_t i = 0; i < flights; i++)
 	{
-		for (int i = 0; i < flights; i++)
+		while (a->flightNum == count)
 		{
-			inFlights[i] += div;
+			inFlights[count]++;
 		}
-
-		int remainder = athletes - (div * flights);
-		while (remainder != 0)
-		{
-			inFlights[count] += 1; remainder -= 1;
-			count++;
-			if (count == flights)
-			{
-				count = 0;
-			}
-		}
-		count = 0;
-
-		for (int f = 0; f < 10; f++)
-		{
-			for (int i = 0; i < inFlights[f]; i++)
-			{
-				a[count].flightNum = f + 1;
-				count++;
-			}
-		}
-		count = 0;
 	}
-	else {
-		for (int i = 0; i < flights; i++)
-		{
-			inFlights[i] += div;
-		}
-		for (int f = 0; f < 10; f++)
-		{
-			for (int i = 0; i < inFlights[f]; i++)
-			{
-				a[count].flightNum = f + 1;
-				count++;
-			}
-		}
-		count = 0;
-	}
-
-	for (int i = 0; i < flights; i++)
-	{
-		cout << "\nThere will be " << inFlights[i] << " people in flight " << i + 1 << ".\n";
-	}
-
+	count = 0;
 
 	for (int f = 0; f < flights; f++)
 	{
-		for (int r = 0; r < 3; r++)
+		for (int r = 0; r < rounds; r++)
 		{
 			count = amount;
 			for (int i = 0; i < inFlights[f]; i++)
 			{
-				cout << "Round " << r << endl << endl;
+				cout << "Flight " << f + 1 << endl << endl;
+				cout << "Round " << r + 1 << endl << endl;
 				cout << "\nIs " << a[count].name << " here to throw?\n(y/n)>";
 				cin >> choice;
 				while (choice != 'n' && choice != 'y')
