@@ -9,11 +9,10 @@ struct Athletes {
     string school;
     double feet;
     double inches;
-    string max;
-    string throw1, throw2, throw3;
+    string throw1, throw2, throw3, throw4;
     string bestThrow;
-    int flightNum = 0;
     double bestDouble;
+    int flightNum;
 };
 
 #endif
